@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">RadioWave</string>>
+
+    <string name="theme">Theme</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="light_mode">Light Mode</string>
+    <string name="system_default">System Default</string>
+    <string name="choose_a_theme">Choose a theme</string>
+
+    <string name="search">Search</string>
+    <string name="clear_data">Clear Data</string>
+
+</resources>
