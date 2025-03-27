@@ -4,7 +4,7 @@ import androidx.compose.material3.Text
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import org.onedroid.radiowave.app.presentation.home.HomeScreen
+import org.onedroid.radiowave.presentation.home.HomeScreen
 
 fun NavGraphBuilder.navGraphBuilder(
     rootNavController: NavController
