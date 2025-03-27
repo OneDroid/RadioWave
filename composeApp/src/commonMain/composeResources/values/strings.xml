@@ -8,8 +8,22 @@
     <string name="system_default">System Default</string>
     <string name="choose_a_theme">Choose a theme</string>
 
-
-
+    <!--Radio-->
+    <string name="search_radios">Search Radios</string>
+    <string name="trending_radios">Trending Radios</string>">
+    <string name="verified">Verified</string>">
+    <string name="latest_radios">Latest Radios</string>">
+    <string name="no_radios_found">"No Radios Found!"</string>
+    <string name="online_radio_stations">Online Radio Stations</string>
+    <string name="radio_cover_background">Radio Cover Background</string>
+    <string name="radio_cover">Radio Cover</string>
+    <string name="verified_title">verified-title</string>
+    <string name="verified_list">verified-list</string>
+    <string name="latest_title">latest-title</string>
+    <string name="circular-progress-indicator">circular-progress-indicator</string>
+    <string name="recently_updated">Recently Updated</string>
+    <string name="radio_disclaimer">Radio are coming from Radio Browser api</string>
+    <string name="retry">Retry</string>
 
     <!--Content Description-->
     <string name="info">Info</string>
@@ -17,7 +31,7 @@
     <string name="search">Search</string>
     <string name="clear_data">Clear Data</string>
     <string name="back">Back</string>
-
+    <string name="right_arrow">Right Arrow</string>
 
     <!--Error Messages-->
     <string name="error_disk_full">Oops, it seems like your disk is full.</string>
