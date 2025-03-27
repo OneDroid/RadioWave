@@ -26,6 +26,7 @@ import org.onedroid.radiowave.app.presentation.home.components.FeedTitle
 import org.onedroid.radiowave.app.presentation.home.components.HomeTopAppBar
 import org.onedroid.radiowave.app.presentation.home.components.RadioGridItem
 import org.onedroid.radiowave.app.presentation.home.components.RadioHorizontalGridItem
+import org.onedroid.radiowave.app.presentation.home.components.RadioSearchResult
 import org.onedroid.radiowave.app.presentation.home.components.ShimmerEffect
 import org.onedroid.radiowave.app.presentation.home.components.row
 import org.onedroid.radiowave.app.presentation.home.components.single
@@ -55,7 +56,17 @@ fun HomeScreen(
                 toggleSearch = viewModel::toggleSearch,
                 searchQuery = viewModel.searchQuery,
                 updateSearchQuery = viewModel::updateSearchQuery,
-                scrollBehavior = scrollBehavior
+                scrollBehavior = scrollBehavior,
+                searchResultContent = {
+                    RadioSearchResult(
+                        isSearchLoading = viewModel.isSearchLoading,
+                        searchErrorMsg = viewModel.searchErrorMsg,
+                        searchResult = viewModel.searchResult,
+                        onRadioClick = {
+                            viewModel.toggleSearch()
+                        }
+                    )
+                }
             )
         }
     ) { contentPadding ->

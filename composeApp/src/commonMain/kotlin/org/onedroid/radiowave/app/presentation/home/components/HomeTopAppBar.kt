@@ -30,6 +30,7 @@ fun HomeTopAppBar(
     updateSearchQuery: (String) -> Unit,
     isSearchActive: Boolean,
     toggleSearch: () -> Unit,
+    searchResultContent: @Composable () -> Unit,
     scrollBehavior: TopAppBarScrollBehavior
 ) {
     TopAppBar(
@@ -74,7 +75,7 @@ fun HomeTopAppBar(
                 toggleSearch()
             },
             content = {
-
+                searchResultContent()
             },
             onBack = {
                 toggleSearch()

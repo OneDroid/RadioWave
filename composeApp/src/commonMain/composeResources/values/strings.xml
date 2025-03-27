@@ -24,6 +24,15 @@
     <string name="recently_updated">Recently Updated</string>
     <string name="radio_disclaimer">Radio are coming from Radio Browser api</string>
     <string name="retry">Retry</string>
+    <string name="no_search_result">No search result</string>
+    <string name="radio_details">Radio Details</string>
+    <string name="country">Country</string>
+    <string name="state">State</string>
+    <string name="bitrate">Bitrate</string>
+    <string name="language">Language</string>
+    <string name="homepage">Homepage</string>
+    <string name="unknown">Unknown</string>
+    <string name="map_location">Map Location</string>
 
     <!--Content Description-->
     <string name="info">Info</string>
