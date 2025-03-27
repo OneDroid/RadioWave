@@ -12,7 +12,7 @@ val mediumNavigationBarWidth = 100.dp
 
 val expandedFeedWidth = 150.dp
 val mediumFeedWidth = 140.dp
-val compactFeedWidth = 150.dp
+val compactFeedWidth = 120.dp
 
 val expandedScreenPadding = 50.dp
 val mediumScreenPadding = 20.dp
@@ -29,8 +29,12 @@ val extraLarge = 32.dp
 
 const val bookCoverAspectRatio = 0.66f
 const val audioBookCoverAspectRatio = 1f
-val horizontalGridMaxHeight = 450.dp
+val horizontalGridMaxHeight = 350.dp
 val horizontalGridMaxWidth = 125.dp
 val horizontalScrollGridMaxWidth = 180.dp
 
 val maxWidthIn = 1000.dp
+
+val imageSize = 100.dp
+val imageSizeMedium = 200.dp
+val imageSizeLarge = 250.dp

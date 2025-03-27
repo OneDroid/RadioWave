@@ -11,7 +11,7 @@ import org.onedroid.radiowave.core.utils.Theme
 @Preview
 fun App() {
     KoinContext {
-        AppTheme(Theme.DARK_MODE.name) {
+        AppTheme(Theme.LIGHT_MODE.name) {
             NavigationScreenRoot()
         }
     }

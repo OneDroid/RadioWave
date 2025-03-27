@@ -28,3 +28,4 @@ const val DATA_STORE_FILE_NAME = "setting.preferences_pb"
 const val SEARCH_TRIGGER_CHAR = 3
 
 const val FORTY_EIGHT_HOURS_IN_MILLIS = 48 * 60 * 60 * 1000L
+

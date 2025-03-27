@@ -42,9 +42,9 @@ class RemoteRadioDataSourceImpl(
                 header("User-Agent", USER_AGENT)
                 parameter("limit", resultLimit)
                 parameter("hidebroken", "true")
-                parameter("order", "random")
+                parameter("order", "clickcount")
                 parameter("reverse", "true")
-                parameter("offset", page)
+                parameter("has_extended_info", "true")
             }
         }
     }

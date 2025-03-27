@@ -5,6 +5,16 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
+val shimmer = Color(0xFFC3C3C3)
+
+val shimmerColors = listOf(
+    shimmer.copy(alpha = 0.3f),
+    shimmer.copy(alpha = 0.5f),
+    shimmer.copy(alpha = 1.0f),
+    shimmer.copy(alpha = 0.5f),
+    shimmer.copy(alpha = 0.3f),
+)
+
 val CustomDarkGray = Color(0xFF1f1f1e)
 val CustomLightGreen = Color(0xFF1e3c3b)
 val CustomOrange = Color(0xFFe89d63)
