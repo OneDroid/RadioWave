@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
@@ -96,6 +97,10 @@ fun HomeScreen(
                         searchResult = viewModel.searchResult,
                         onRadioClick = {
                             viewModel.toggleSearch()
+                            scope.launch { delay(1000) }
+                            viewModel.selectedRadio(it)
+                            scope.launch { bottomSheetState.bottomSheetState.expand() }
+                            viewModel.play(it.url)
                         }
                     )
                 }
