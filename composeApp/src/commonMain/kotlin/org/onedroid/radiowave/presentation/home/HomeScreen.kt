@@ -53,7 +53,6 @@ fun HomeScreen(
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     val bottomSheetState = rememberBottomSheetScaffoldState()
     val scope = rememberCoroutineScope()
-
     BottomSheetScaffold(
         modifier = Modifier.fillMaxSize().nestedScroll(scrollBehavior.nestedScrollConnection),
         scaffoldState = bottomSheetState,
@@ -63,7 +62,20 @@ fun HomeScreen(
                     radio = viewModel.selectedRadio!!,
                     isPlaying = viewModel.isPlaying,
                     onPlayClick = {
-                        viewModel.play(viewModel.selectedRadio!!.url)
+                        viewModel.pauseResume()
+                    },
+                    onVolumeUpClick = {
+                        scope.launch {
+                            viewModel.increaseVolume()
+                        }
+                    },
+                    onVolumeDownClick = {
+                        scope.launch {
+                            viewModel.decreaseVolume()
+                        }
+                    },
+                    playerStatusIndicator = {
+                        viewModel.playerRepository.PlayerStatusIndicator()
                     }
                 )
             }
@@ -138,6 +150,7 @@ fun HomeScreen(
                     onClick = {
                         viewModel.selectedRadio(radio)
                         scope.launch { bottomSheetState.bottomSheetState.expand() }
+                        viewModel.play(radio.url)
                     }
                 )
             }

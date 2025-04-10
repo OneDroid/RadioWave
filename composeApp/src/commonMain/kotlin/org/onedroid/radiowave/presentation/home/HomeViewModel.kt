@@ -23,7 +23,7 @@ import org.onedroid.radiowave.domain.RadioRepository
 
 class HomeViewModel(
     private val radioRepository: RadioRepository,
-    private val playerRepository: PlayerRepository
+    val playerRepository: PlayerRepository
 ) : ViewModel() {
 
     private val cachedRadios = emptyList<Radio>()
@@ -74,8 +74,13 @@ class HomeViewModel(
     }
 
     fun play(streamUrl: String) {
-        isPlaying = !isPlaying
+        isPlaying = true
         playerRepository.play(streamUrl)
+    }
+
+    fun pauseResume() {
+        isPlaying = !isPlaying
+        playerRepository.pauseResume()
     }
 
     fun updateSearchQuery(query: String) {
@@ -84,6 +89,14 @@ class HomeViewModel(
 
     fun selectedRadio(radio: Radio) {
         selectedRadio = radio
+    }
+
+    suspend fun increaseVolume() {
+        playerRepository.volumeUp()
+    }
+
+    suspend fun decreaseVolume() {
+        playerRepository.volumeDown()
     }
 
     fun getRadios() = viewModelScope.launch {

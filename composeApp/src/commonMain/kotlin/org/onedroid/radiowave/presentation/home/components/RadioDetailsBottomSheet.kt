@@ -72,6 +72,9 @@ fun RadioDetailsBottomSheet(
     radio: Radio,
     isPlaying: Boolean = false,
     onPlayClick: () -> Unit = {},
+    onVolumeUpClick: () -> Unit = {},
+    onVolumeDownClick: () -> Unit = {},
+    playerStatusIndicator: @Composable () -> Unit = {}
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize().padding(small)
@@ -98,7 +101,11 @@ fun RadioDetailsBottomSheet(
 
         item {
             PlayerFullWidthView(
-                onPlayClick = onPlayClick
+                onPlayClick = onPlayClick,
+                onVolumeUpClick = onVolumeUpClick,
+                onVolumeDownClick = onVolumeDownClick,
+                isPlaying = isPlaying,
+                playerStatusIndicator = playerStatusIndicator
             )
         }
     }
@@ -140,11 +147,15 @@ fun radioDetail(radio: Radio) {
 private fun ActionButtons() {
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(extraSmall)
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        listOf("Save", "Now Playing", "Share", "Webpage").forEach { label ->
+        listOf("Save", "Share", "Webpage").forEach { label ->
             item {
-                Button(onClick = { /* TODO: Add respective actions */ }) {
+                Button(
+                    modifier = Modifier.padding(horizontal = extraSmall),
+                    onClick = { /* TODO: Add respective actions */ }
+                ) {
                     Text(text = label)
                 }
             }
@@ -237,80 +248,75 @@ private fun RadioCoverImage(
 @Composable
 private fun PlayerFullWidthView(
     modifier: Modifier = Modifier,
-    onPlayClick: () -> Unit = {}
+    onPlayClick: () -> Unit = {},
+    onVolumeUpClick: () -> Unit = {},
+    onVolumeDownClick: () -> Unit = {},
+    isPlaying: Boolean = false,
+    playerStatusIndicator: @Composable () -> Unit = {}
 ) {
     Spacer(modifier = Modifier.height(10.dp))
-    Row(
-        modifier = modifier.fillMaxWidth().padding(horizontal = 10.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        LiveIndicator()
-
-        Text(
-            text = "10:30:55"
-        )
-
-    }
-    Row(
-        modifier = modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
-    ) {
-        IconButton(
-            modifier = Modifier.clip(RoundedCornerShape(100))
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .size(60.dp),
-            onClick = {
-
-            }
+    Column {
+        playerStatusIndicator()
+        Row(
+            modifier = modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
         ) {
-            Icon(
-                modifier = Modifier.size(20.dp),
-                painter = painterResource(Res.drawable.ic_volume_down),
-                contentDescription = "Collapse",
-                tint = MaterialTheme.colorScheme.onPrimaryContainer
-            )
-        }
-
-        Spacer(modifier = Modifier.width(2.dp))
-
-        IconButton(
-            modifier = Modifier.padding(5.dp).clip(RoundedCornerShape(100))
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .size(80.dp),
-            onClick = {
-                onPlayClick()
+            IconButton(
+                modifier = Modifier.clip(RoundedCornerShape(100))
+                    .background(MaterialTheme.colorScheme.primaryContainer)
+                    .size(60.dp),
+                onClick = {
+                    onVolumeDownClick()
+                }
+            ) {
+                Icon(
+                    modifier = Modifier.size(20.dp),
+                    painter = painterResource(Res.drawable.ic_volume_down),
+                    contentDescription = "Collapse",
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer
+                )
             }
-        ) {
-            Icon(
-                modifier = Modifier.size(45.dp),
-                painter = if (true) {
-                    painterResource(Res.drawable.ic_pause)
-                } else {
-                    painterResource(Res.drawable.ic_play)
-                },
-                contentDescription = "Pause or Play",
-                tint = MaterialTheme.colorScheme.onPrimaryContainer
-            )
-        }
 
-        Spacer(modifier = Modifier.width(2.dp))
+            Spacer(modifier = Modifier.width(2.dp))
 
-        IconButton(
-            modifier = Modifier.clip(RoundedCornerShape(100))
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .size(60.dp),
-            onClick = {
-                /* onAction(PlayerAction.OnForwardClick)*/
+            IconButton(
+                modifier = Modifier.padding(5.dp).clip(RoundedCornerShape(100))
+                    .background(MaterialTheme.colorScheme.primaryContainer)
+                    .size(80.dp),
+                onClick = {
+                    onPlayClick()
+                }
+            ) {
+                Icon(
+                    modifier = Modifier.size(45.dp),
+                    painter = if (isPlaying) {
+                        painterResource(Res.drawable.ic_pause)
+                    } else {
+                        painterResource(Res.drawable.ic_play)
+                    },
+                    contentDescription = "Pause or Play",
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer
+                )
             }
-        ) {
-            Icon(
-                modifier = Modifier.size(20.dp),
-                painter = painterResource(Res.drawable.ic_volume_up),
-                contentDescription = "Collapse",
-                tint = MaterialTheme.colorScheme.onPrimaryContainer
-            )
+
+            Spacer(modifier = Modifier.width(2.dp))
+
+            IconButton(
+                modifier = Modifier.clip(RoundedCornerShape(100))
+                    .background(MaterialTheme.colorScheme.primaryContainer)
+                    .size(60.dp),
+                onClick = {
+                    onVolumeUpClick()
+                }
+            ) {
+                Icon(
+                    modifier = Modifier.size(20.dp),
+                    painter = painterResource(Res.drawable.ic_volume_up),
+                    contentDescription = "Collapse",
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer
+                )
+            }
         }
     }
 }
@@ -319,7 +325,6 @@ private fun PlayerFullWidthView(
 fun LiveIndicator(extraSmall: Dp = 4.dp) {
     var visible by remember { mutableStateOf(true) }
 
-    // Toggle alpha every 500ms
     LaunchedEffect(Unit) {
         while (true) {
             visible = !visible
@@ -327,7 +332,6 @@ fun LiveIndicator(extraSmall: Dp = 4.dp) {
         }
     }
 
-    // Animate alpha between 0f and 1f
     val alpha by animateFloatAsState(
         targetValue = if (visible) 1f else 0f,
         animationSpec = tween(durationMillis = 300)
