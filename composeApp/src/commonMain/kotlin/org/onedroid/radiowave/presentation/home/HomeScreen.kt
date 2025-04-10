@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import org.onedroid.radiowave.app.theme.compactFeedWidth
+import org.onedroid.radiowave.app.theme.extraSmall
 import org.onedroid.radiowave.presentation.home.components.ErrorMsgView
 import org.onedroid.radiowave.presentation.home.components.Feed
 import org.onedroid.radiowave.presentation.home.components.FeedTitle
@@ -31,8 +33,6 @@ import org.onedroid.radiowave.presentation.home.components.ShimmerEffect
 import org.onedroid.radiowave.presentation.home.components.row
 import org.onedroid.radiowave.presentation.home.components.single
 import org.onedroid.radiowave.presentation.home.components.title
-import org.onedroid.radiowave.app.theme.compactFeedWidth
-import org.onedroid.radiowave.app.theme.extraSmall
 import radiowave.composeapp.generated.resources.Res
 import radiowave.composeapp.generated.resources.recently_updated
 
@@ -110,6 +110,9 @@ fun HomeScreen(
                 key = { index -> viewModel.radios[index].id }
             ) { index ->
                 val radio = viewModel.radios[index]
+                if (index == radiosSize - 1 && !viewModel.isLoading && viewModel.errorMsg == null) {
+                    viewModel.getRadios()
+                }
                 RadioGridItem(
                     radio = radio,
                     onClick = {

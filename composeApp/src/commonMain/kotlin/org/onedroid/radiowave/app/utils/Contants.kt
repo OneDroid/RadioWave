@@ -26,6 +26,5 @@ enum class Theme(val title: StringResource) {
 
 const val DATA_STORE_FILE_NAME = "setting.preferences_pb"
 const val SEARCH_TRIGGER_CHAR = 3
-
+const val MAX_RADIO_TO_FETCH = 99
 const val FORTY_EIGHT_HOURS_IN_MILLIS = 48 * 60 * 60 * 1000L
-

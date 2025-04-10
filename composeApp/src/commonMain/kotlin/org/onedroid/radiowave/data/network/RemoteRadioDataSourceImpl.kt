@@ -32,19 +32,20 @@ class RemoteRadioDataSourceImpl(
     }
 
     override suspend fun fetchRadios(
-        resultLimit: Int?,
-        page: Int
+        offset: Int,
+        limit: Int
     ): Result<List<RadioSearchResponseDto>, DataError.Remote> {
         return safeCall {
             httpClient.get(
                 urlString = "$RADIO_BROWSER_BASE_URL/stations"
             ) {
                 header("User-Agent", USER_AGENT)
-                parameter("limit", resultLimit)
+                parameter("limit", limit)
+                parameter("offset", offset)
                 parameter("hidebroken", "true")
                 parameter("order", "clickcount")
                 parameter("reverse", "true")
-                parameter("has_extended_info", "true")
+             //   parameter("has_extended_info", "true")
             }
         }
     }

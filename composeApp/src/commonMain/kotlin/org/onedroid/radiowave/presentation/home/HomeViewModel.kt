@@ -11,12 +11,14 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
-import org.onedroid.radiowave.data.mappers.toUiText
-import org.onedroid.radiowave.domain.Radio
-import org.onedroid.radiowave.domain.RadioRepository
+import org.onedroid.radiowave.app.utils.MAX_RADIO_TO_FETCH
+import org.onedroid.radiowave.app.utils.SEARCH_TRIGGER_CHAR
 import org.onedroid.radiowave.app.utils.UiText
 import org.onedroid.radiowave.app.utils.onError
 import org.onedroid.radiowave.app.utils.onSuccess
+import org.onedroid.radiowave.data.mappers.toUiText
+import org.onedroid.radiowave.domain.Radio
+import org.onedroid.radiowave.domain.RadioRepository
 
 class HomeViewModel(
     private val radioRepository: RadioRepository
@@ -49,8 +51,11 @@ class HomeViewModel(
     var searchResult by mutableStateOf<List<Radio>>(emptyList())
         private set
 
+    private var offset by mutableStateOf(0)
+    private var limit by mutableStateOf(MAX_RADIO_TO_FETCH)
+
     init {
-        getRadios(20)
+        getRadios()
         if (cachedRadios.isEmpty()) {
             observeSearchQuery()
         }
@@ -64,11 +69,16 @@ class HomeViewModel(
         searchQuery = query
     }
 
-    private fun getRadios(page: Int) = viewModelScope.launch {
+    fun getRadios() = viewModelScope.launch {
         isLoading = true
-        radioRepository.getRadios(page = page).onSuccess {
+        radioRepository.getRadios(
+            offset = offset,
+            limit = limit
+        ).onSuccess {
+            val allRadios = radios + it
             isLoading = false
-            radios = it
+            radios = allRadios
+            offset += limit
         }.onError { error ->
             errorMsg = error.toUiText()
         }
@@ -84,7 +94,7 @@ class HomeViewModel(
                         searchResult = cachedRadios
                     }
 
-                    query.length >= 3 -> {
+                    query.length >= SEARCH_TRIGGER_CHAR -> {
                         searchJob?.cancel()
                         searchJob = searchRadios(query)
                     }

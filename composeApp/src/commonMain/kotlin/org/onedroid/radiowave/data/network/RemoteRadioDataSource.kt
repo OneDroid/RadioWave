@@ -11,7 +11,7 @@ interface RemoteRadioDataSource {
     ): Result<List<RadioSearchResponseDto>, DataError.Remote>
 
     suspend fun fetchRadios(
-        resultLimit: Int? = 99,
-        page: Int
+        offset: Int,
+        limit: Int
     ): Result<List<RadioSearchResponseDto>, DataError.Remote>
 }
