@@ -63,7 +63,6 @@ import radiowave.composeapp.generated.resources.unknown
 
 @Composable
 fun RadioDetailsBottomSheet(radio: Radio) {
-
     LazyColumn(
         modifier = Modifier.fillMaxSize().padding(small)
     ) {
