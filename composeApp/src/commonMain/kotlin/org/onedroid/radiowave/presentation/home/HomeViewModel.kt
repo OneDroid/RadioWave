@@ -51,23 +51,8 @@ class HomeViewModel(
     var searchResult by mutableStateOf<List<Radio>>(emptyList())
         private set
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     private var offset by mutableStateOf(0)
     private var limit by mutableStateOf(MAX_RADIO_TO_FETCH)
-=======
-    var selectedRadio by mutableStateOf<Radio?>(null)
-        private set
->>>>>>> Stashed changes
-=======
-    var selectedRadio by mutableStateOf<Radio?>(null)
-        private set
->>>>>>> Stashed changes
-=======
-    var selectedRadio by mutableStateOf<Radio?>(null)
-        private set
->>>>>>> Stashed changes
 
     init {
         getRadios()
@@ -84,21 +69,7 @@ class HomeViewModel(
         searchQuery = query
     }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     fun getRadios() = viewModelScope.launch {
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-    fun selectRadio(radio: Radio) {
-        selectedRadio = radio
-    }
-
-    private fun getRadios(page: Int) = viewModelScope.launch {
->>>>>>> Stashed changes
         isLoading = true
         radioRepository.getRadios(
             offset = offset,

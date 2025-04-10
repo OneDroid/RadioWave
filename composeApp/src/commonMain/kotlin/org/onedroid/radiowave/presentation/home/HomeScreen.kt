@@ -6,26 +6,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.rememberBottomSheetScaffoldState
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import kotlinx.coroutines.launch
-import androidx.compose.material3.BottomSheetDefaults
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.onedroid.radiowave.app.theme.compactFeedWidth
@@ -41,18 +33,6 @@ import org.onedroid.radiowave.presentation.home.components.ShimmerEffect
 import org.onedroid.radiowave.presentation.home.components.row
 import org.onedroid.radiowave.presentation.home.components.single
 import org.onedroid.radiowave.presentation.home.components.title
-<<<<<<< Updated upstream
-=======
-import org.onedroid.radiowave.app.theme.compactFeedWidth
-import org.onedroid.radiowave.app.theme.extraSmall
-import org.onedroid.radiowave.presentation.home.components.RadioDetailsBottomSheet
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 import radiowave.composeapp.generated.resources.Res
 import radiowave.composeapp.generated.resources.recently_updated
 
@@ -65,18 +45,10 @@ fun HomeScreen(
     val gridState = rememberLazyGridState()
     val radiosSize by mutableStateOf(viewModel.radios.size)
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-    val bottomSheetState = rememberBottomSheetScaffoldState()
-    val scope = rememberCoroutineScope()
 
-    BottomSheetScaffold(
-        modifier = Modifier.fillMaxSize().nestedScroll(scrollBehavior.nestedScrollConnection),
-        scaffoldState = bottomSheetState,
-        sheetContent = {
-            viewModel.selectedRadio?.let {
-                RadioDetailsBottomSheet(viewModel.selectedRadio!!)
-            }
-        },
-        sheetPeekHeight = if (viewModel.selectedRadio != null) BottomSheetDefaults.SheetPeekHeight else 0.dp,
+    Scaffold(
+        modifier = Modifier.fillMaxSize()
+            .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             HomeTopAppBar(
                 rootNavController = rootNavController,
@@ -144,10 +116,7 @@ fun HomeScreen(
                 RadioGridItem(
                     radio = radio,
                     onClick = {
-                        scope.launch {
-                            bottomSheetState.bottomSheetState.expand()
-                        }
-                        viewModel.selectRadio(radio)
+
                     }
                 )
             }
