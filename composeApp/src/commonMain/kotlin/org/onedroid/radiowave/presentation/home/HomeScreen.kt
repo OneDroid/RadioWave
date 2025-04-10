@@ -46,6 +46,9 @@ import org.onedroid.radiowave.presentation.home.components.title
 import org.onedroid.radiowave.app.theme.compactFeedWidth
 import org.onedroid.radiowave.app.theme.extraSmall
 import org.onedroid.radiowave.presentation.home.components.RadioDetailsBottomSheet
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 import radiowave.composeapp.generated.resources.Res
 import radiowave.composeapp.generated.resources.recently_updated

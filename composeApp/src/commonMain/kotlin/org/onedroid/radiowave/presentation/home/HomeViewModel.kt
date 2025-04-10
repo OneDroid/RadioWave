@@ -52,8 +52,13 @@ class HomeViewModel(
         private set
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private var offset by mutableStateOf(0)
     private var limit by mutableStateOf(MAX_RADIO_TO_FETCH)
+=======
+    var selectedRadio by mutableStateOf<Radio?>(null)
+        private set
+>>>>>>> Stashed changes
 =======
     var selectedRadio by mutableStateOf<Radio?>(null)
         private set
@@ -75,8 +80,11 @@ class HomeViewModel(
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     fun getRadios() = viewModelScope.launch {
 =======
+=======
+>>>>>>> Stashed changes
     fun selectRadio(radio: Radio) {
         selectedRadio = radio
     }
