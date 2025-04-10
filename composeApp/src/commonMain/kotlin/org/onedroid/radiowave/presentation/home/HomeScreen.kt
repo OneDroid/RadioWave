@@ -59,7 +59,13 @@ fun HomeScreen(
         scaffoldState = bottomSheetState,
         sheetContent = {
             viewModel.selectedRadio?.let {
-                RadioDetailsBottomSheet(viewModel.selectedRadio!!)
+                RadioDetailsBottomSheet(
+                    radio = viewModel.selectedRadio!!,
+                    isPlaying = viewModel.isPlaying,
+                    onPlayClick = {
+                        viewModel.play(viewModel.selectedRadio!!.url)
+                    }
+                )
             }
         },
         sheetPeekHeight = if (viewModel.selectedRadio != null) BottomSheetDefaults.SheetPeekHeight else 0.dp,

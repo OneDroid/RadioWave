@@ -4,10 +4,12 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,50 +21,58 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil3.compose.rememberAsyncImagePainter
+import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.onedroid.radiowave.app.theme.Shapes
 import org.onedroid.radiowave.app.theme.extraSmall
 import org.onedroid.radiowave.app.theme.medium
 import org.onedroid.radiowave.app.theme.small
-import org.onedroid.radiowave.app.theme.thin
 import org.onedroid.radiowave.domain.Radio
 import radiowave.composeapp.generated.resources.Res
-import radiowave.composeapp.generated.resources.bitrate
 import radiowave.composeapp.generated.resources.broken_image_radio
-import radiowave.composeapp.generated.resources.country
-import radiowave.composeapp.generated.resources.homepage
+import radiowave.composeapp.generated.resources.ic_circle
+import radiowave.composeapp.generated.resources.ic_pause
+import radiowave.composeapp.generated.resources.ic_play
+import radiowave.composeapp.generated.resources.ic_volume_down
+import radiowave.composeapp.generated.resources.ic_volume_up
 import radiowave.composeapp.generated.resources.radio_cover
 import radiowave.composeapp.generated.resources.radio_cover_background
-import radiowave.composeapp.generated.resources.radio_details
-import radiowave.composeapp.generated.resources.unknown
 
 @Composable
-fun RadioDetailsBottomSheet(radio: Radio) {
+fun RadioDetailsBottomSheet(
+    radio: Radio,
+    isPlaying: Boolean = false,
+    onPlayClick: () -> Unit = {},
+) {
     LazyColumn(
         modifier = Modifier.fillMaxSize().padding(small)
     ) {
@@ -74,7 +84,7 @@ fun RadioDetailsBottomSheet(radio: Radio) {
                     error = painterResource(Res.drawable.broken_image_radio)
                 )
                 AnimatedRadioCoverImage(
-                    isPlaying = false,
+                    isPlaying = isPlaying,
                     painter = imagePainter,
                 )
             }
@@ -87,7 +97,9 @@ fun RadioDetailsBottomSheet(radio: Radio) {
         }
 
         item {
-            //  playerViewModel.playComp(radioData.url)
+            PlayerFullWidthView(
+                onPlayClick = onPlayClick
+            )
         }
     }
 
@@ -110,15 +122,17 @@ fun radioDetail(radio: Radio) {
 
         radio.country?.let {
             Text(
+                modifier = Modifier.basicMarquee(
+                    initialDelayMillis = 0,
+                    iterations = Int.MAX_VALUE,
+                ),
                 text = it,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onBackground,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
             )
         }
-
-        Spacer(modifier = Modifier.height(medium))
     }
 }
 
@@ -126,9 +140,9 @@ fun radioDetail(radio: Radio) {
 private fun ActionButtons() {
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(thin)
+        horizontalArrangement = Arrangement.spacedBy(extraSmall)
     ) {
-        listOf("Save", "Lyrics", "Share", "Webpage").forEach { label ->
+        listOf("Save", "Now Playing", "Share", "Webpage").forEach { label ->
             item {
                 Button(onClick = { /* TODO: Add respective actions */ }) {
                     Text(text = label)
@@ -207,15 +221,136 @@ private fun RadioCoverImage(
             painter = painter,
             contentDescription = stringResource(Res.string.radio_cover)
         )
-       /* Box(
+        /* Box(
+             modifier = Modifier
+                 .size(40.dp)
+                 .clip(RoundedCornerShape(100))
+                 .background(Color.Black)
+                 .padding(5.dp)
+                 .clip(RoundedCornerShape(100))
+                 .background(MaterialTheme.colorScheme.background)
+                 .align(Alignment.Center)
+         )*/
+    }
+}
+
+@Composable
+private fun PlayerFullWidthView(
+    modifier: Modifier = Modifier,
+    onPlayClick: () -> Unit = {}
+) {
+    Spacer(modifier = Modifier.height(10.dp))
+    Row(
+        modifier = modifier.fillMaxWidth().padding(horizontal = 10.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        LiveIndicator()
+
+        Text(
+            text = "10:30:55"
+        )
+
+    }
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        IconButton(
+            modifier = Modifier.clip(RoundedCornerShape(100))
+                .background(MaterialTheme.colorScheme.primaryContainer)
+                .size(60.dp),
+            onClick = {
+
+            }
+        ) {
+            Icon(
+                modifier = Modifier.size(20.dp),
+                painter = painterResource(Res.drawable.ic_volume_down),
+                contentDescription = "Collapse",
+                tint = MaterialTheme.colorScheme.onPrimaryContainer
+            )
+        }
+
+        Spacer(modifier = Modifier.width(2.dp))
+
+        IconButton(
+            modifier = Modifier.padding(5.dp).clip(RoundedCornerShape(100))
+                .background(MaterialTheme.colorScheme.primaryContainer)
+                .size(80.dp),
+            onClick = {
+                onPlayClick()
+            }
+        ) {
+            Icon(
+                modifier = Modifier.size(45.dp),
+                painter = if (true) {
+                    painterResource(Res.drawable.ic_pause)
+                } else {
+                    painterResource(Res.drawable.ic_play)
+                },
+                contentDescription = "Pause or Play",
+                tint = MaterialTheme.colorScheme.onPrimaryContainer
+            )
+        }
+
+        Spacer(modifier = Modifier.width(2.dp))
+
+        IconButton(
+            modifier = Modifier.clip(RoundedCornerShape(100))
+                .background(MaterialTheme.colorScheme.primaryContainer)
+                .size(60.dp),
+            onClick = {
+                /* onAction(PlayerAction.OnForwardClick)*/
+            }
+        ) {
+            Icon(
+                modifier = Modifier.size(20.dp),
+                painter = painterResource(Res.drawable.ic_volume_up),
+                contentDescription = "Collapse",
+                tint = MaterialTheme.colorScheme.onPrimaryContainer
+            )
+        }
+    }
+}
+
+@Composable
+fun LiveIndicator(extraSmall: Dp = 4.dp) {
+    var visible by remember { mutableStateOf(true) }
+
+    // Toggle alpha every 500ms
+    LaunchedEffect(Unit) {
+        while (true) {
+            visible = !visible
+            delay(500)
+        }
+    }
+
+    // Animate alpha between 0f and 1f
+    val alpha by animateFloatAsState(
+        targetValue = if (visible) 1f else 0f,
+        animationSpec = tween(durationMillis = 300)
+    )
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(
             modifier = Modifier
-                .size(40.dp)
+                .size(10.dp)
                 .clip(RoundedCornerShape(100))
-                .background(Color.Black)
-                .padding(5.dp)
-                .clip(RoundedCornerShape(100))
-                .background(MaterialTheme.colorScheme.background)
-                .align(Alignment.Center)
-        )*/
+                .alpha(alpha),
+            contentAlignment = Alignment.Center
+        ) {
+            Image(
+                painter = painterResource(Res.drawable.ic_circle),
+                contentDescription = "Blinking Dot",
+                modifier = Modifier.size(10.dp),
+                colorFilter = ColorFilter.tint(Color.Red)
+            )
+        }
+        Spacer(modifier = Modifier.width(extraSmall))
+        Text(text = "Live")
     }
 }

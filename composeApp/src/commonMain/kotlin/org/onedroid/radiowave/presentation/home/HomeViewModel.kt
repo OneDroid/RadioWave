@@ -11,6 +11,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
+import org.onedroid.radiowave.app.player.PlayerRepository
 import org.onedroid.radiowave.app.utils.MAX_RADIO_TO_FETCH
 import org.onedroid.radiowave.app.utils.SEARCH_TRIGGER_CHAR
 import org.onedroid.radiowave.app.utils.UiText
@@ -21,7 +22,8 @@ import org.onedroid.radiowave.domain.Radio
 import org.onedroid.radiowave.domain.RadioRepository
 
 class HomeViewModel(
-    private val radioRepository: RadioRepository
+    private val radioRepository: RadioRepository,
+    private val playerRepository: PlayerRepository
 ) : ViewModel() {
 
     private val cachedRadios = emptyList<Radio>()
@@ -54,6 +56,9 @@ class HomeViewModel(
     var selectedRadio by mutableStateOf<Radio?>(null)
         private set
 
+    var isPlaying by mutableStateOf(false)
+        private set
+
     private var offset by mutableStateOf(0)
     private var limit by mutableStateOf(MAX_RADIO_TO_FETCH)
 
@@ -66,6 +71,11 @@ class HomeViewModel(
 
     fun toggleSearch() {
         isSearchActive = !isSearchActive
+    }
+
+    fun play(streamUrl: String) {
+        isPlaying = !isPlaying
+        playerRepository.play(streamUrl)
     }
 
     fun updateSearchQuery(query: String) {
