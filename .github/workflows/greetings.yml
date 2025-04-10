@@ -1,0 +1,16 @@
+name: Greetings
+
+on: [pull_request_target, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: "Hi, hope you're doing well! Could you please add your name and the link to your contribution repo [here](https://github.com/OneDroid/.github)? This will display your profile on the organization's homepage. We truly appreciate all contributors and want to give proper credit for your awesome work. Thanks a lot!"
+        pr-message: "Hi, hope you're doing well! Could you please add your name and the link to your contribution repo [here](https://github.com/OneDroid/.github)? This will display your profile on the organization's homepage. We truly appreciate all contributors and want to give proper credit for your awesome work. Thanks a lot!"
