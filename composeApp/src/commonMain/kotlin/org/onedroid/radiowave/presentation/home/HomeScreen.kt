@@ -6,18 +6,23 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.material3.BottomSheetDefaults
+import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.onedroid.radiowave.app.theme.compactFeedWidth
@@ -26,6 +31,7 @@ import org.onedroid.radiowave.presentation.home.components.ErrorMsgView
 import org.onedroid.radiowave.presentation.home.components.Feed
 import org.onedroid.radiowave.presentation.home.components.FeedTitle
 import org.onedroid.radiowave.presentation.home.components.HomeTopAppBar
+import org.onedroid.radiowave.presentation.home.components.RadioDetailsBottomSheet
 import org.onedroid.radiowave.presentation.home.components.RadioGridItem
 import org.onedroid.radiowave.presentation.home.components.RadioHorizontalGridItem
 import org.onedroid.radiowave.presentation.home.components.RadioSearchResult
@@ -45,10 +51,18 @@ fun HomeScreen(
     val gridState = rememberLazyGridState()
     val radiosSize by mutableStateOf(viewModel.radios.size)
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+    val bottomSheetState = rememberBottomSheetScaffoldState()
+    val scope = rememberCoroutineScope()
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize()
-            .nestedScroll(scrollBehavior.nestedScrollConnection),
+    BottomSheetScaffold(
+        modifier = Modifier.fillMaxSize().nestedScroll(scrollBehavior.nestedScrollConnection),
+        scaffoldState = bottomSheetState,
+        sheetContent = {
+            viewModel.selectedRadio?.let {
+                RadioDetailsBottomSheet(viewModel.selectedRadio!!)
+            }
+        },
+        sheetPeekHeight = if (viewModel.selectedRadio != null) BottomSheetDefaults.SheetPeekHeight else 0.dp,
         topBar = {
             HomeTopAppBar(
                 rootNavController = rootNavController,
@@ -116,7 +130,8 @@ fun HomeScreen(
                 RadioGridItem(
                     radio = radio,
                     onClick = {
-
+                        viewModel.selectedRadio(radio)
+                        scope.launch { bottomSheetState.bottomSheetState.expand() }
                     }
                 )
             }
