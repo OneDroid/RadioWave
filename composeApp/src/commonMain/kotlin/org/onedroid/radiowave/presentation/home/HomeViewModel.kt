@@ -51,6 +51,9 @@ class HomeViewModel(
     var searchResult by mutableStateOf<List<Radio>>(emptyList())
         private set
 
+    var selectedRadio by mutableStateOf<Radio?>(null)
+        private set
+
     private var offset by mutableStateOf(0)
     private var limit by mutableStateOf(MAX_RADIO_TO_FETCH)
 
@@ -67,6 +70,10 @@ class HomeViewModel(
 
     fun updateSearchQuery(query: String) {
         searchQuery = query
+    }
+
+    fun selectedRadio(radio: Radio) {
+        selectedRadio = radio
     }
 
     fun getRadios() = viewModelScope.launch {
