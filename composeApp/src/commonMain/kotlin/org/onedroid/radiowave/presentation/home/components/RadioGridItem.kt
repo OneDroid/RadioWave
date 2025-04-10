@@ -72,12 +72,11 @@ fun RadioGridItem(
             Spacer(modifier = Modifier.height(small))
 
             Text(
-                text = radio.name,
+                text = radio.name.trimStart(),
                 style = MaterialTheme.typography.titleSmall.copy(
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
                 ),
-                textAlign = TextAlign.Center,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
