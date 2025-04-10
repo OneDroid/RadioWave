@@ -47,6 +47,9 @@ import org.onedroid.radiowave.app.theme.compactFeedWidth
 import org.onedroid.radiowave.app.theme.extraSmall
 import org.onedroid.radiowave.presentation.home.components.RadioDetailsBottomSheet
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
