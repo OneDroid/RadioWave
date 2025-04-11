@@ -74,7 +74,8 @@ fun RadioDetailsBottomSheet(
     onPlayClick: () -> Unit = {},
     onVolumeUpClick: () -> Unit = {},
     onVolumeDownClick: () -> Unit = {},
-    playerStatusIndicator: @Composable () -> Unit = {}
+    playerStatusIndicator: @Composable () -> Unit = {},
+    nowPlayingIndicator: @Composable () -> Unit = {}
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize().padding(small)
@@ -93,7 +94,10 @@ fun RadioDetailsBottomSheet(
             }
         }
         item {
-            radioDetail(radio)
+            radioDetail(
+                radio = radio,
+                nowPlayingIndicator = nowPlayingIndicator,
+            )
         }
         item {
             ActionButtons()
@@ -113,9 +117,12 @@ fun RadioDetailsBottomSheet(
 }
 
 @Composable
-fun radioDetail(radio: Radio) {
+fun radioDetail(
+    radio: Radio,
+    nowPlayingIndicator: @Composable () -> Unit = {}
+) {
     Column(
-        modifier = Modifier.fillMaxSize().padding(medium)
+        modifier = Modifier.fillMaxSize().padding(small)
     ) {
         Spacer(modifier = Modifier.height(medium))
         Text(
@@ -140,6 +147,7 @@ fun radioDetail(radio: Radio) {
                 overflow = TextOverflow.Ellipsis,
             )
         }
+        nowPlayingIndicator()
     }
 }
 
@@ -254,9 +262,10 @@ private fun PlayerFullWidthView(
     isPlaying: Boolean = false,
     playerStatusIndicator: @Composable () -> Unit = {}
 ) {
-    Spacer(modifier = Modifier.height(10.dp))
     Column {
+        Spacer(modifier = Modifier.height(15.dp))
         playerStatusIndicator()
+        Spacer(modifier = Modifier.height(10.dp))
         Row(
             modifier = modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -318,43 +327,5 @@ private fun PlayerFullWidthView(
                 )
             }
         }
-    }
-}
-
-@Composable
-fun LiveIndicator(extraSmall: Dp = 4.dp) {
-    var visible by remember { mutableStateOf(true) }
-
-    LaunchedEffect(Unit) {
-        while (true) {
-            visible = !visible
-            delay(500)
-        }
-    }
-
-    val alpha by animateFloatAsState(
-        targetValue = if (visible) 1f else 0f,
-        animationSpec = tween(durationMillis = 300)
-    )
-
-    Row(
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Box(
-            modifier = Modifier
-                .size(10.dp)
-                .clip(RoundedCornerShape(100))
-                .alpha(alpha),
-            contentAlignment = Alignment.Center
-        ) {
-            Image(
-                painter = painterResource(Res.drawable.ic_circle),
-                contentDescription = "Blinking Dot",
-                modifier = Modifier.size(10.dp),
-                colorFilter = ColorFilter.tint(Color.Red)
-            )
-        }
-        Spacer(modifier = Modifier.width(extraSmall))
-        Text(text = "Live")
     }
 }

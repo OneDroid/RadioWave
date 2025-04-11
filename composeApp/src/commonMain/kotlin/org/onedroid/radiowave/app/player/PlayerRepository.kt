@@ -9,4 +9,6 @@ interface PlayerRepository {
     suspend fun volumeDown()
     @Composable
     fun PlayerStatusIndicator()
+    @Composable
+    fun NowPlayingIndicator()
 }

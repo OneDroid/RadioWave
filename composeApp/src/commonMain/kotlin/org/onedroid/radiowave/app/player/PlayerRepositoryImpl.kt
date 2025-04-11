@@ -26,4 +26,9 @@ class PlayerRepositoryImpl(
     override fun PlayerStatusIndicator() {
         playerController.PlayerStatusIndicator()
     }
+
+    @Composable
+    override fun NowPlayingIndicator() {
+        playerController.NowPlayingIndicator()
+    }
 }

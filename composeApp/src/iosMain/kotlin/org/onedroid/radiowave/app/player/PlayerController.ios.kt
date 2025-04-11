@@ -23,4 +23,9 @@ actual class PlayerController() : PlayerRepository {
     override fun PlayerStatusIndicator() {
         TODO("Not yet implemented")
     }
+
+    @Composable
+    override fun NowPlayingIndicator() {
+        TODO("Not yet implemented")
+    }
 }

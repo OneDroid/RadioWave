@@ -77,6 +77,9 @@ fun HomeScreen(
                     },
                     playerStatusIndicator = {
                         viewModel.playerRepository.PlayerStatusIndicator()
+                    },
+                    nowPlayingIndicator = {
+                        viewModel.playerRepository.NowPlayingIndicator()
                     }
                 )
             }
