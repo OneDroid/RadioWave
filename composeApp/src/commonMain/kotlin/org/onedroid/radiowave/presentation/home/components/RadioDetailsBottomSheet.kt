@@ -56,12 +56,17 @@ import org.jetbrains.compose.resources.stringResource
 import org.onedroid.radiowave.app.theme.extraSmall
 import org.onedroid.radiowave.app.theme.medium
 import org.onedroid.radiowave.app.theme.small
+import org.onedroid.radiowave.app.theme.thin
 import org.onedroid.radiowave.domain.Radio
 import radiowave.composeapp.generated.resources.Res
 import radiowave.composeapp.generated.resources.broken_image_radio
+import radiowave.composeapp.generated.resources.ic_bookmark
+import radiowave.composeapp.generated.resources.ic_bookmark_border
 import radiowave.composeapp.generated.resources.ic_circle
+import radiowave.composeapp.generated.resources.ic_internet
 import radiowave.composeapp.generated.resources.ic_pause
 import radiowave.composeapp.generated.resources.ic_play
+import radiowave.composeapp.generated.resources.ic_share
 import radiowave.composeapp.generated.resources.ic_volume_down
 import radiowave.composeapp.generated.resources.ic_volume_up
 import radiowave.composeapp.generated.resources.radio_cover
@@ -158,14 +163,48 @@ private fun ActionButtons() {
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        listOf("Save", "Share", "Webpage").forEach { label ->
-            item {
-                Button(
-                    modifier = Modifier.padding(horizontal = extraSmall),
-                    onClick = { /* TODO: Add respective actions */ }
-                ) {
-                    Text(text = label)
-                }
+        item {
+            Button(
+                modifier = Modifier.padding(horizontal = thin).width(110.dp),
+                onClick = { /* TODO: Save action */ }
+            ) {
+                Icon(
+                    modifier = Modifier.size(20.dp),
+                    painter = painterResource(Res.drawable.ic_bookmark_border),
+                    contentDescription = "Save"
+                )
+                Spacer(modifier = Modifier.width(extraSmall))
+                Text(text = "Save")
+            }
+        }
+
+        item {
+            Button(
+                modifier = Modifier.padding(horizontal = thin).width(115.dp),
+                onClick = { /* TODO: Share action */ }
+            ) {
+                Icon(
+                    modifier = Modifier.size(20.dp),
+                    painter = painterResource(Res.drawable.ic_share),
+                    contentDescription = "Share"
+                )
+                Spacer(modifier = Modifier.width(5.dp))
+                Text(text = "Share")
+            }
+        }
+
+        item {
+            Button(
+                modifier = Modifier.padding(horizontal = thin).width(145.dp),
+                onClick = { /* TODO: Webpage action */ }
+            ) {
+                Icon(
+                    modifier = Modifier.size(20.dp),
+                    painter = painterResource(Res.drawable.ic_internet),
+                    contentDescription = "Webpage"
+                )
+                Spacer(modifier = Modifier.width(6.dp))
+                Text(text = "Webpage")
             }
         }
     }
