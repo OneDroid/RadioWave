@@ -30,6 +30,7 @@ fun HomeTopAppBar(
     updateSearchQuery: (String) -> Unit,
     isSearchActive: Boolean,
     toggleSearch: () -> Unit,
+    onAboutClick: () -> Unit,
     searchResultContent: @Composable () -> Unit,
     scrollBehavior: TopAppBarScrollBehavior
 ) {
@@ -43,7 +44,9 @@ fun HomeTopAppBar(
             )
         },
         navigationIcon = {
-            IconButton(onClick = { }) {
+            IconButton(onClick = {
+                onAboutClick()
+            }) {
                 Icon(Icons.Outlined.Info, contentDescription = stringResource(Res.string.info))
             }
         },

@@ -7,6 +7,7 @@
     <string name="light_mode">Light Mode</string>
     <string name="system_default">System Default</string>
     <string name="choose_a_theme">Choose a theme</string>
+    <string name="close">Close</string>
 
     <!--Radio-->
     <string name="search_radios">Search Radios</string>
@@ -50,5 +51,23 @@
     <string name="error_too_many_requests">Your quota seems to be exceeded.</string>
     <string name="error_serialization">Couldn't parse data.</string>
     <string name="invalid_image">Invalid image</string>
+
+    <!--About-->
+    <string name="about">About</string>
+    <string name="developer">Developed by OneDroid</string>
+    <string name="maintainer">Maintenance by Tawhid Monowar</string>
+    <string name="last_updated_label">Last Updated</string>
+    <string name="last_updated_date">January 2025</string>
+    <string name="contact_label">Contact</string>
+    <string name="contact_email">contact.onedroid@gmail.com</string>
+    <string name="github_label">Github</string>
+    <string name="github_url">https://github.com/OneDroid/RadioWave</string>
+    <string name="webpage_label">Webpage</string>
+    <string name="webpage_url">https://onedroid.github.io</string>
+    <string name="license_label">License</string>
+    <string name="license_type">GPL-3.0 license</string>
+    <string name="version_label">Version</string>
+    <string name="version_number">1.0.0</string>
+    <string name="about_app">RadioWave is an internet radio player that provides access to a database of over 50,000 stations. It uses Radio Browser API to fetch radio stations.</string>
 
 </resources>

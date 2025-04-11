@@ -59,6 +59,9 @@ class HomeViewModel(
     var isPlaying by mutableStateOf(false)
         private set
 
+    var isAboutDialogShowing by mutableStateOf(false)
+        private set
+
     private var offset by mutableStateOf(0)
     private var limit by mutableStateOf(MAX_RADIO_TO_FETCH)
 
@@ -67,6 +70,10 @@ class HomeViewModel(
         if (cachedRadios.isEmpty()) {
             observeSearchQuery()
         }
+    }
+
+    fun toggleAboutDialog() {
+        isAboutDialogShowing = !isAboutDialogShowing
     }
 
     fun toggleSearch() {
