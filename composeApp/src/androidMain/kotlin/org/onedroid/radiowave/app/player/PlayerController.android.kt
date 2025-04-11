@@ -130,7 +130,7 @@ actual class PlayerController(context: Context) : PlayerRepository {
                 when (playbackState) {
                     Player.STATE_IDLE, Player.STATE_ENDED -> {
                         metadataTimeoutJob?.cancel()
-                        _metadataState.value = MetadataState.Detecting
+                        _metadataState.value = MetadataState.NotAvailable
                     }
 
                     Player.STATE_READY -> {
@@ -247,7 +247,6 @@ actual class PlayerController(context: Context) : PlayerRepository {
         val playbackState = remember { mutableIntStateOf(player.playbackState) }
         val currentPosition = remember { mutableLongStateOf(0L) }
         val hasError = remember { mutableStateOf(false) }
-
         val currentVolume = remember { mutableIntStateOf(getCurrentVolume()) }
 
         // Update volume periodically
