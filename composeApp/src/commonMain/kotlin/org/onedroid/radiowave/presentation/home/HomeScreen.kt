@@ -147,7 +147,7 @@ fun HomeScreen(
                     ErrorMsgView(
                         errorMsg = viewModel.errorMsg!!,
                         onRetryClick = {
-
+                            viewModel.getRadios()
                         }
                     )
                 } else {
@@ -182,7 +182,10 @@ fun HomeScreen(
                     ErrorMsgView(
                         errorMsg = viewModel.errorMsg!!,
                         onRetryClick = {
-
+                            viewModel.getRadios()
+                            scope.launch {
+                                delay(1000)
+                            }
                         }
                     )
                 }
