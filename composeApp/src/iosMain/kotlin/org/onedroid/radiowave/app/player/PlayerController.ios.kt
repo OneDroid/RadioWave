@@ -1,31 +1,20 @@
 package org.onedroid.radiowave.app.player
 
 import androidx.compose.runtime.Composable
+import org.onedroid.radiowave.domain.Radio
 
 actual class PlayerController() : PlayerRepository {
+
     override fun play(audioUrl: String) {
         TODO("Not yet implemented")
     }
 
-    override fun pauseResume() {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun volumeUp() {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun volumeDown() {
-        TODO("Not yet implemented")
-    }
-
     @Composable
-    override fun PlayerStatusIndicator() {
+    override fun PLayerUI(radio: Radio) {
         TODO("Not yet implemented")
     }
 
-    @Composable
-    override fun NowPlayingIndicator() {
+    override fun onCleared() {
         TODO("Not yet implemented")
     }
 }

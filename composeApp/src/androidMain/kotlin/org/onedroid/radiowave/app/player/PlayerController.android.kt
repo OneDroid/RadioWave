@@ -22,11 +22,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.LinearProgressIndicator
@@ -38,7 +40,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -58,6 +59,7 @@ import androidx.media3.common.MediaMetadata
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
+import coil3.compose.rememberAsyncImagePainter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -66,22 +68,34 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.onedroid.radiowave.R
+import org.onedroid.radiowave.app.theme.small
 import org.onedroid.radiowave.app.theme.thin
+import org.onedroid.radiowave.domain.Radio
+import org.onedroid.radiowave.presentation.home.components.AnimatedRadioCoverImage
+import org.onedroid.radiowave.presentation.home.components.PlayerFullWidthView
+import org.onedroid.radiowave.presentation.home.components.RadioActionButtons
+import org.onedroid.radiowave.presentation.home.components.RadioDetails
+import radiowave.composeapp.generated.resources.Res
+import radiowave.composeapp.generated.resources.broken_image_radio
 
 actual class PlayerController(context: Context) : PlayerRepository {
 
     private val player = ExoPlayer.Builder(context).build()
     private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
     private val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
-    private val _currentMetadata = MutableStateFlow<String?>(null)
-    private val currentMetadata = _currentMetadata.asStateFlow()
     private val coroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     private val _metadataState = MutableStateFlow<MetadataState>(MetadataState.Detecting)
-    val metadataState = _metadataState.asStateFlow()
+    private val _isPlaying = MutableStateFlow(false)
+    private val _currentPosition = MutableStateFlow(0L)
+    private val metadataState = _metadataState.asStateFlow()
+    private val isPlaying = _isPlaying.asStateFlow()
+    private val currentPosition = _currentPosition.asStateFlow()
 
     private var metadataTimeoutJob: Job? = null
+    private var positionUpdateJob: Job? = null
 
     private val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         val vibratorManager =
@@ -90,6 +104,53 @@ actual class PlayerController(context: Context) : PlayerRepository {
     } else {
         @Suppress("DEPRECATION")
         context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+    }
+
+
+    @Composable
+    override fun PLayerUI(radio: Radio) {
+        val isPlayingState by isPlaying.collectAsState()
+
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(small)
+        ) {
+            item {
+                radio.imgUrl?.let { imgUrl ->
+                    val imagePainter = rememberAsyncImagePainter(
+                        model = imgUrl,
+                        placeholder = org.jetbrains.compose.resources.painterResource(Res.drawable.broken_image_radio),
+                        error = org.jetbrains.compose.resources.painterResource(Res.drawable.broken_image_radio)
+                    )
+                    AnimatedRadioCoverImage(
+                        isPlaying = isPlayingState,
+                        painter = imagePainter,
+                    )
+                }
+            }
+            item {
+                RadioDetails(
+                    radio = radio,
+                    nowPlayingIndicator = {
+                        NowPlayingIndicator()
+                    }
+                )
+            }
+            item {
+                RadioActionButtons()
+            }
+
+            item {
+                PlayerFullWidthView(
+                    onPlayClick = { pauseResume() },
+                    onVolumeUpClick = { volumeUp() },
+                    onVolumeDownClick = { volumeDown() },
+                    isPlaying = isPlayingState,
+                    playerStatusIndicator = { PlayerStatusIndicator() }
+                )
+            }
+        }
     }
 
     override fun play(audioUrl: String) {
@@ -101,7 +162,7 @@ actual class PlayerController(context: Context) : PlayerRepository {
         player.play()
     }
 
-    override fun pauseResume() {
+    private fun pauseResume() {
         if (player.isPlaying) {
             player.pause()
         } else {
@@ -110,11 +171,22 @@ actual class PlayerController(context: Context) : PlayerRepository {
         vibrateDevice()
     }
 
-    // Add this after initializing player
+    // Start position tracking
+    private fun startPositionTracking() {
+        positionUpdateJob?.cancel()
+        positionUpdateJob = coroutineScope.launch {
+            while (isActive) {
+                if (player.isPlaying) {
+                    _currentPosition.value = player.currentPosition
+                }
+                delay(50L)
+            }
+        }
+    }
+
     init {
         player.addListener(object : Player.Listener {
             override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
-                // Cancel any pending timeout when metadata changes
                 metadataTimeoutJob?.cancel()
 
                 val artist = mediaMetadata.artist?.toString() ?: ""
@@ -134,7 +206,6 @@ actual class PlayerController(context: Context) : PlayerRepository {
                     }
 
                     Player.STATE_READY -> {
-                        // If we reach ready state and still in detecting state, start timeout
                         if (_metadataState.value is MetadataState.Detecting) {
                             startMetadataTimeout()
                         }
@@ -146,24 +217,31 @@ actual class PlayerController(context: Context) : PlayerRepository {
                 }
             }
 
-            override fun onIsPlayingChanged(isPlaying: Boolean) {
-                if (isPlaying) {
-                    // If started playing and still in detecting state, start timeout
-                    if (_metadataState.value is MetadataState.Detecting) {
+            override fun onIsPlayingChanged(isNowPlaying: Boolean) {
+                _isPlaying.value = isNowPlaying
+                if (isNowPlaying) {
+                    if (_metadataState.value is MetadataState.Detecting &&
+                        (metadataTimeoutJob == null || metadataTimeoutJob?.isCompleted == true)
+                    ) {
                         startMetadataTimeout()
+                    }
+
+                    // Only start position tracking if it's not already running
+                    if (positionUpdateJob?.isActive != true) {
+                        startPositionTracking()
                     }
                 }
             }
         })
-    }
 
+        // Start position tracking at initialization
+        startPositionTracking()
+    }
 
     private fun startMetadataTimeout() {
         metadataTimeoutJob?.cancel()
         metadataTimeoutJob = coroutineScope.launch {
-            // Wait for 8 seconds for metadata to arrive
-            delay(8000)
-            // If still in detecting state after timeout, switch to not available
+            delay(5000)
             if (_metadataState.value is MetadataState.Detecting) {
                 _metadataState.value = MetadataState.NotAvailable
             }
@@ -171,9 +249,8 @@ actual class PlayerController(context: Context) : PlayerRepository {
     }
 
     @Composable
-    override fun NowPlayingIndicator() {
+    fun NowPlayingIndicator() {
         val state by metadataState.collectAsState()
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -211,14 +288,14 @@ actual class PlayerController(context: Context) : PlayerRepository {
         }
     }
 
-    override suspend fun volumeUp() {
+    private fun volumeUp() {
         val currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
         val newVolume = (currentVolume + 1).coerceAtMost(maxVolume)
         adjustVolumeWithUi(newVolume)
         vibrateDevice()
     }
 
-    override suspend fun volumeDown() {
+    private fun volumeDown() {
         val currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
         val newVolume = (currentVolume - 1).coerceAtLeast(0)
         adjustVolumeWithUi(newVolume)
@@ -234,26 +311,26 @@ actual class PlayerController(context: Context) : PlayerRepository {
 
     private fun vibrateDevice() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator.vibrate(VibrationEffect.createOneShot(60, VibrationEffect.DEFAULT_AMPLITUDE))
+            vibrator.vibrate(VibrationEffect.createOneShot(30, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
             @Suppress("DEPRECATION")
-            vibrator.vibrate(60)
+            vibrator.vibrate(30)
         }
     }
 
     @SuppressLint("DefaultLocale")
     @Composable
-    override fun PlayerStatusIndicator() {
+    private fun PlayerStatusIndicator() {
         val playbackState = remember { mutableIntStateOf(player.playbackState) }
-        val currentPosition = remember { mutableLongStateOf(0L) }
         val hasError = remember { mutableStateOf(false) }
-        val currentVolume = remember { mutableIntStateOf(getCurrentVolume()) }
-
-        // Update volume periodically
+        val currentVolumeState = remember { mutableIntStateOf(getCurrentVolume()) }
+        val position by currentPosition.collectAsState()
+        val isPlayingState by isPlaying.collectAsState()
+        // Update volume periodically but less frequently
         LaunchedEffect(Unit) {
             while (true) {
-                currentVolume.intValue = getCurrentVolume()
-                delay(500) // adjust as needed
+                currentVolumeState.intValue = getCurrentVolume()
+                delay(1000) // reduced polling frequency
             }
         }
 
@@ -262,7 +339,6 @@ actual class PlayerController(context: Context) : PlayerRepository {
             val listener = object : Player.Listener {
                 override fun onPlaybackStateChanged(state: Int) {
                     playbackState.intValue = state
-                    // If playback starts successfully, reset error state
                     if (state == Player.STATE_READY || state == Player.STATE_BUFFERING) {
                         hasError.value = false
                     }
@@ -274,22 +350,11 @@ actual class PlayerController(context: Context) : PlayerRepository {
             }
 
             player.addListener(listener)
-
-            onDispose {
-                player.removeListener(listener)
-            }
-        }
-
-        // Update timer when playing
-        LaunchedEffect(player.isPlaying) {
-            while (player.isPlaying) {
-                currentPosition.longValue = player.currentPosition
-                delay(50L)
-            }
+            onDispose { player.removeListener(listener) }
         }
 
         val animatedVolumePercent by animateFloatAsState(
-            targetValue = currentVolume.intValue / maxVolume.toFloat(),
+            targetValue = currentVolumeState.intValue / maxVolume.toFloat(),
             animationSpec = tween(durationMillis = 300),
             label = "volumeAnim"
         )
@@ -327,8 +392,8 @@ actual class PlayerController(context: Context) : PlayerRepository {
                     modifier = Modifier.size(16.dp)
                 )
 
-                player.isPlaying || playbackState.intValue == Player.STATE_READY -> {
-                    val totalSeconds = currentPosition.longValue / 1000
+                playbackState.intValue == Player.STATE_READY || isPlayingState -> {
+                    val totalSeconds = position / 1000
                     val hours = totalSeconds / 3600
                     val minutes = (totalSeconds % 3600) / 60
                     val seconds = totalSeconds % 60
@@ -348,6 +413,7 @@ actual class PlayerController(context: Context) : PlayerRepository {
     fun LiveIndicator(extraSmall: Dp = 4.dp) {
         var visible by remember { mutableStateOf(true) }
 
+        // Optimize blinking effect
         LaunchedEffect(Unit) {
             while (true) {
                 visible = !visible
@@ -357,12 +423,11 @@ actual class PlayerController(context: Context) : PlayerRepository {
 
         val alpha by animateFloatAsState(
             targetValue = if (visible) 1f else 0f,
-            animationSpec = tween(durationMillis = 300), label = ""
+            animationSpec = tween(durationMillis = 300),
+            label = "liveIndicatorAlpha"
         )
 
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             Box(
                 modifier = Modifier
                     .size(10.dp)
@@ -384,9 +449,7 @@ actual class PlayerController(context: Context) : PlayerRepository {
 
     @Composable
     fun OfflineIndicator(extraSmall: Dp = 4.dp) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             Box(
                 modifier = Modifier
                     .size(10.dp)
@@ -402,12 +465,12 @@ actual class PlayerController(context: Context) : PlayerRepository {
         return audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
     }
 
-    fun onCleared() {
+    override fun onCleared() {
         metadataTimeoutJob?.cancel()
+        positionUpdateJob?.cancel()
         coroutineScope.cancel()
         player.release()
     }
-
 }
 
 sealed class MetadataState {

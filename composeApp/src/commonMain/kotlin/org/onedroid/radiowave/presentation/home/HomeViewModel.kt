@@ -85,9 +85,8 @@ class HomeViewModel(
         playerRepository.play(streamUrl)
     }
 
-    fun pauseResume() {
+    fun togglePlayPause() {
         isPlaying = !isPlaying
-        playerRepository.pauseResume()
     }
 
     fun updateSearchQuery(query: String) {
@@ -96,14 +95,6 @@ class HomeViewModel(
 
     fun selectedRadio(radio: Radio) {
         selectedRadio = radio
-    }
-
-    suspend fun increaseVolume() {
-        playerRepository.volumeUp()
-    }
-
-    suspend fun decreaseVolume() {
-        playerRepository.volumeDown()
     }
 
     fun getRadios() = viewModelScope.launch {
@@ -152,4 +143,11 @@ class HomeViewModel(
             searchErrorMsg = error.toUiText()
         }
     }
+
+
+    override fun onCleared() {
+        super.onCleared()
+        playerRepository.onCleared()
+    }
+
 }

@@ -50,7 +50,6 @@ import org.onedroid.radiowave.presentation.home.components.Feed
 import org.onedroid.radiowave.presentation.home.components.FeedTitle
 import org.onedroid.radiowave.presentation.home.components.FullScreenDialog
 import org.onedroid.radiowave.presentation.home.components.HomeTopAppBar
-import org.onedroid.radiowave.presentation.home.components.RadioDetailsBottomSheet
 import org.onedroid.radiowave.presentation.home.components.RadioGridItem
 import org.onedroid.radiowave.presentation.home.components.RadioHorizontalGridItem
 import org.onedroid.radiowave.presentation.home.components.RadioSearchResult
@@ -95,29 +94,7 @@ fun HomeScreen(
         scaffoldState = bottomSheetState,
         sheetContent = {
             viewModel.selectedRadio?.let {
-                RadioDetailsBottomSheet(
-                    radio = viewModel.selectedRadio!!,
-                    isPlaying = viewModel.isPlaying,
-                    onPlayClick = {
-                        viewModel.pauseResume()
-                    },
-                    onVolumeUpClick = {
-                        scope.launch {
-                            viewModel.increaseVolume()
-                        }
-                    },
-                    onVolumeDownClick = {
-                        scope.launch {
-                            viewModel.decreaseVolume()
-                        }
-                    },
-                    playerStatusIndicator = {
-                        viewModel.playerRepository.PlayerStatusIndicator()
-                    },
-                    nowPlayingIndicator = {
-                        viewModel.playerRepository.NowPlayingIndicator()
-                    }
-                )
+                viewModel.playerRepository.PLayerUI(radio = it)
             }
         },
         sheetPeekHeight = if (viewModel.selectedRadio != null) BottomSheetDefaults.SheetPeekHeight else 0.dp,

@@ -1,14 +1,11 @@
 package org.onedroid.radiowave.app.player
 
 import androidx.compose.runtime.Composable
+import org.onedroid.radiowave.domain.Radio
 
 interface PlayerRepository {
     fun play(audioUrl: String)
-    fun pauseResume()
-    suspend fun volumeUp()
-    suspend fun volumeDown()
     @Composable
-    fun PlayerStatusIndicator()
-    @Composable
-    fun NowPlayingIndicator()
+    fun PLayerUI(radio: Radio)
+    fun onCleared()
 }
