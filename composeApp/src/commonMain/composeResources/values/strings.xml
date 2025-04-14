@@ -35,6 +35,18 @@
     <string name="unknown">Unknown</string>
     <string name="map_location">Map Location</string>
 
+    <!--Player-->
+    <string name="now_playing">Now Playing:</string>
+    <string name="detecting">Detecting...</string>
+    <string name="unable_to_detect">Unable to detect!</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="volume_up">Volume Up</string>
+    <string name="volume_down">Volume Down</string>
+    <string name="player_status_indicator">Player Status Indicator</string>
+
+
+
     <!--Content Description-->
     <string name="info">Info</string>
     <string name="settings">Settings</string>

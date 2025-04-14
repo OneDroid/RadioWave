@@ -70,6 +70,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.stringResource
 import org.onedroid.radiowave.R
 import org.onedroid.radiowave.app.theme.small
 import org.onedroid.radiowave.app.theme.thin
@@ -80,6 +81,9 @@ import org.onedroid.radiowave.presentation.home.components.RadioActionButtons
 import org.onedroid.radiowave.presentation.home.components.RadioDetails
 import radiowave.composeapp.generated.resources.Res
 import radiowave.composeapp.generated.resources.broken_image_radio
+import radiowave.composeapp.generated.resources.detecting
+import radiowave.composeapp.generated.resources.now_playing
+import radiowave.composeapp.generated.resources.unable_to_detect
 
 actual class PlayerController(context: Context) : PlayerRepository {
 
@@ -93,7 +97,6 @@ actual class PlayerController(context: Context) : PlayerRepository {
     private val metadataState = _metadataState.asStateFlow()
     private val isPlaying = _isPlaying.asStateFlow()
     private val currentPosition = _currentPosition.asStateFlow()
-
     private var metadataTimeoutJob: Job? = null
     private var positionUpdateJob: Job? = null
 
@@ -106,11 +109,9 @@ actual class PlayerController(context: Context) : PlayerRepository {
         context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
     }
 
-
     @Composable
     override fun PLayerUI(radio: Radio) {
         val isPlayingState by isPlaying.collectAsState()
-
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -171,7 +172,6 @@ actual class PlayerController(context: Context) : PlayerRepository {
         vibrateDevice()
     }
 
-    // Start position tracking
     private fun startPositionTracking() {
         positionUpdateJob?.cancel()
         positionUpdateJob = coroutineScope.launch {
@@ -226,7 +226,6 @@ actual class PlayerController(context: Context) : PlayerRepository {
                         startMetadataTimeout()
                     }
 
-                    // Only start position tracking if it's not already running
                     if (positionUpdateJob?.isActive != true) {
                         startPositionTracking()
                     }
@@ -234,7 +233,6 @@ actual class PlayerController(context: Context) : PlayerRepository {
             }
         })
 
-        // Start position tracking at initialization
         startPositionTracking()
     }
 
@@ -249,7 +247,7 @@ actual class PlayerController(context: Context) : PlayerRepository {
     }
 
     @Composable
-    fun NowPlayingIndicator() {
+    private fun NowPlayingIndicator() {
         val state by metadataState.collectAsState()
         Column(
             modifier = Modifier
@@ -261,7 +259,7 @@ actual class PlayerController(context: Context) : PlayerRepository {
                 horizontalArrangement = Arrangement.spacedBy(thin)
             ) {
                 Text(
-                    text = "Now Playing: ",
+                    text = stringResource(Res.string.now_playing),
                     style = MaterialTheme.typography.bodyMedium,
                 )
                 AnimatedVisibility(
@@ -275,8 +273,8 @@ actual class PlayerController(context: Context) : PlayerRepository {
                             iterations = Int.MAX_VALUE,
                         ),
                         text = when (state) {
-                            is MetadataState.Detecting -> "Detecting..."
-                            is MetadataState.NotAvailable -> "Unable to detect!"
+                            is MetadataState.Detecting -> stringResource(Res.string.detecting)
+                            is MetadataState.NotAvailable -> stringResource(Res.string.unable_to_detect)
                             is MetadataState.Available -> (state as MetadataState.Available).content
                         },
                         style = MaterialTheme.typography.bodyMedium,
@@ -311,22 +309,23 @@ actual class PlayerController(context: Context) : PlayerRepository {
 
     private fun vibrateDevice() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator.vibrate(VibrationEffect.createOneShot(30, VibrationEffect.DEFAULT_AMPLITUDE))
+            vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
             @Suppress("DEPRECATION")
-            vibrator.vibrate(30)
+            vibrator.vibrate(50)
         }
     }
 
     @SuppressLint("DefaultLocale")
     @Composable
     private fun PlayerStatusIndicator() {
+
         val playbackState = remember { mutableIntStateOf(player.playbackState) }
         val hasError = remember { mutableStateOf(false) }
         val currentVolumeState = remember { mutableIntStateOf(getCurrentVolume()) }
         val position by currentPosition.collectAsState()
         val isPlayingState by isPlaying.collectAsState()
-        // Update volume periodically but less frequently
+
         LaunchedEffect(Unit) {
             while (true) {
                 currentVolumeState.intValue = getCurrentVolume()
@@ -334,7 +333,6 @@ actual class PlayerController(context: Context) : PlayerRepository {
             }
         }
 
-        // Monitor player state
         DisposableEffect(player) {
             val listener = object : Player.Listener {
                 override fun onPlaybackStateChanged(state: Int) {
@@ -366,14 +364,13 @@ actual class PlayerController(context: Context) : PlayerRepository {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // LEFT: Live/Offline
+
             if (hasError.value || playbackState.intValue == Player.STATE_IDLE || playbackState.intValue == Player.STATE_ENDED) {
                 OfflineIndicator(4.dp)
             } else {
                 LiveIndicator(4.dp)
             }
 
-            // CENTER: Volume progress bar
             LinearProgressIndicator(
                 progress = { animatedVolumePercent },
                 modifier = Modifier
@@ -385,7 +382,6 @@ actual class PlayerController(context: Context) : PlayerRepository {
                 trackColor = Color.DarkGray,
             )
 
-            // RIGHT: Timer or Status
             when {
                 hasError.value -> Text("Failed to play", color = Color.Red)
                 playbackState.intValue == Player.STATE_BUFFERING -> CircularProgressIndicator(
@@ -403,8 +399,7 @@ actual class PlayerController(context: Context) : PlayerRepository {
                         text = String.format("%d:%02d:%02d", hours, minutes, seconds)
                     )
                 }
-
-                else -> Text("Not playing")
+                else -> Text(stringResource(Res.string.now_playing))
             }
         }
     }
@@ -413,7 +408,6 @@ actual class PlayerController(context: Context) : PlayerRepository {
     fun LiveIndicator(extraSmall: Dp = 4.dp) {
         var visible by remember { mutableStateOf(true) }
 
-        // Optimize blinking effect
         LaunchedEffect(Unit) {
             while (true) {
                 visible = !visible
