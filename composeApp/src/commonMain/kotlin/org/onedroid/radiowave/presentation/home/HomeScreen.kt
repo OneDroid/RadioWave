@@ -183,9 +183,6 @@ fun HomeScreen(
                         errorMsg = viewModel.errorMsg!!,
                         onRetryClick = {
                             viewModel.getRadios()
-                            scope.launch {
-                                delay(1000)
-                            }
                         }
                     )
                 }

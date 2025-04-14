@@ -7,12 +7,12 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 import org.onedroid.radiowave.app.player.PlayerRepository
 import org.onedroid.radiowave.app.player.PlayerRepositoryImpl
+import org.onedroid.radiowave.app.utils.HttpClientFactory
 import org.onedroid.radiowave.data.network.RemoteRadioDataSource
 import org.onedroid.radiowave.data.network.RemoteRadioDataSourceImpl
 import org.onedroid.radiowave.data.repository.RadioRepositoryImpl
 import org.onedroid.radiowave.domain.RadioRepository
 import org.onedroid.radiowave.presentation.home.HomeViewModel
-import org.onedroid.radiowave.app.utils.HttpClientFactory
 
 expect val platformModule: Module
 
