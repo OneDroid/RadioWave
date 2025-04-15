@@ -8,6 +8,14 @@
     <string name="system_default">System Default</string>
     <string name="choose_a_theme">Choose a theme</string>
     <string name="close">Close</string>
+    <string name="setting">Setting</string>
+    <string name="go_back">Go Back</string>
+    <string name="clear">Clear</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
+    <string name="delete">Delete</string>
+    <string name="clear_data_title">Confirm Deletion</string>
+    <string name="clear_data_warning">Are you sure you want to delete all saved data? This action cannot be undone, and you will permanently lose all saved information.</string>
 
     <!--Radio-->
     <string name="search_radios">Search Radios</string>
@@ -44,8 +52,6 @@
     <string name="volume_up">Volume Up</string>
     <string name="volume_down">Volume Down</string>
     <string name="player_status_indicator">Player Status Indicator</string>
-
-
 
     <!--Content Description-->
     <string name="info">Info</string>

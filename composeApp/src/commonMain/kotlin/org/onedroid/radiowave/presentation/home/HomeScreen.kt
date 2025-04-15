@@ -236,7 +236,6 @@ private fun ShowAboutDialog(
 ) {
     FullScreenDialog(
         onDismissRequest = { onDismiss() },
-        title = "About",
         modifier = Modifier.padding(16.dp).clip(Shapes.medium),
         actions = {
             Row(

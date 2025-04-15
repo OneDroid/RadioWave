@@ -26,7 +26,7 @@ core-splashscreen = "1.0.1"
 ksp = "2.1.0-1.0.29"
 sqlite = "2.5.0-alpha11"
 room = "2.7.0-alpha11"
-
+datastore = "1.1.1"
 
 [libraries]
 desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
@@ -77,6 +77,9 @@ core-splashscreen = { group = "androidx.core", name = "core-splashscreen", versi
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+
+datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -57,13 +57,15 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.navigation.compose)
             implementation(libs.kotlinx.serialization.json)
-            api(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.bundles.ktor)
             implementation(libs.bundles.coil)
             implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
+            api(libs.datastore.preferences)
+            api(libs.datastore)
+            api(libs.koin.core)
         }
 
         iosMain.dependencies {

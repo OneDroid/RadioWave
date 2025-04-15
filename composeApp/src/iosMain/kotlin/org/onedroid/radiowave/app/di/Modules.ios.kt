@@ -7,10 +7,12 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import org.onedroid.radiowave.app.player.PlayerController
 import org.onedroid.radiowave.data.database.DatabaseFactory
+import org.onedroid.radiowave.data.datastore.dataStorePreferences
 
 actual val platformModule: Module
     get() = module {
         single<HttpClientEngine> { Darwin.create() }
-        singleOf(::PlayerController)
         single { DatabaseFactory() }
+        singleOf(::PlayerController)
+        singleOf(::dataStorePreferences)
     }
