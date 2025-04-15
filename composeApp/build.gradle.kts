@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 kotlin {
@@ -27,6 +29,10 @@ kotlin {
             baseName = "ComposeApp"
             isStatic = true
         }
+    }
+
+    room {
+        schemaDirectory("$projectDir/schemas")
     }
 
     sourceSets {
@@ -56,12 +62,17 @@ kotlin {
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.bundles.ktor)
             implementation(libs.bundles.coil)
+            implementation(libs.androidx.room.runtime)
+            implementation(libs.sqlite.bundled)
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
 
+        dependencies {
+            ksp(libs.androidx.room.compiler)
+        }
     }
 }
 

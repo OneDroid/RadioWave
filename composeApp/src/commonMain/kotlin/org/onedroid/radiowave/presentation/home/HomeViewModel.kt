@@ -8,9 +8,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import org.onedroid.radiowave.app.player.PlayerRepository
 import org.onedroid.radiowave.app.utils.MAX_RADIO_TO_FETCH
@@ -28,9 +29,13 @@ class HomeViewModel(
 ) : ViewModel() {
 
     private val cachedRadios = emptyList<Radio>()
+    private var observeSaveJob: Job? = null
     private var searchJob: Job? = null
 
     var radios by mutableStateOf<List<Radio>>(emptyList())
+        private set
+
+    var savedRadios by mutableStateOf<List<Radio>>(emptyList())
         private set
 
     var isLoading by mutableStateOf(false)
@@ -60,6 +65,9 @@ class HomeViewModel(
     var isPlaying by mutableStateOf(false)
         private set
 
+    var isSaved by mutableStateOf(true)
+        private set
+
     var isAboutDialogShowing by mutableStateOf(false)
         private set
 
@@ -68,6 +76,7 @@ class HomeViewModel(
 
     init {
         getRadios()
+        observeSavedRadio()
         if (cachedRadios.isEmpty()) {
             observeSearchQuery()
         }
@@ -95,6 +104,7 @@ class HomeViewModel(
     }
 
     fun selectedRadio(radio: Radio) {
+        observeSavedStatus(radio.id)
         selectedRadio = radio
     }
 
@@ -145,10 +155,35 @@ class HomeViewModel(
         }
     }
 
+    private fun observeSavedRadio() {
+        observeSaveJob?.cancel()
+        observeSaveJob = radioRepository.getSavedRadios().onEach { radios ->
+            savedRadios = radios
+        }.launchIn(viewModelScope)
+    }
+
+    private fun observeSavedStatus(
+        radioId: String
+    ) = viewModelScope.launch {
+        radioId.let { radioId ->
+            radioRepository.isSaved(radioId).collect { isSaved ->
+                this@HomeViewModel.isSaved = isSaved
+            }
+        }
+    }
+
+    fun saveRadio(radio: Radio) = viewModelScope.launch {
+        observeSavedStatus(radio.id)
+        if (isSaved) {
+            radioRepository.deleteFromSaved(radio.id)
+            return@launch
+        } else {
+            radioRepository.saveRadio(radio)
+        }
+    }
 
     override fun onCleared() {
         super.onCleared()
         playerRepository.onCleared()
     }
-
 }

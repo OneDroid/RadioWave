@@ -32,3 +32,4 @@ google-services.json
 # Android Profiling
 *.hprof
 /.kotlin
+composeApp/schemas/org.onedroid.radiowave.data.database.RadioWaveDatabase/1.json

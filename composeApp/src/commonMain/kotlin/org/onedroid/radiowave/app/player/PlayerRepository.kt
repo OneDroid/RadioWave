@@ -6,6 +6,12 @@ import org.onedroid.radiowave.domain.Radio
 interface PlayerRepository {
     fun play(audioUrl: String)
     @Composable
-    fun PLayerUI(radio: Radio)
+    fun PLayerUI(
+        radio: Radio,
+        isSaved: Boolean,
+        onSaveClick: () -> Unit,
+        onWebpageClick: () -> Unit,
+        onShareClick: () -> Unit
+    )
     fun onCleared()
 }

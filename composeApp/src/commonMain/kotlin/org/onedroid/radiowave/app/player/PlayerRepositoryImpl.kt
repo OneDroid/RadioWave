@@ -9,12 +9,21 @@ class PlayerRepositoryImpl(
     override fun play(audioUrl: String) {
         playerController.play(audioUrl)
     }
+
     @Composable
     override fun PLayerUI(
-        radio: Radio
+        radio: Radio,
+        isSaved: Boolean,
+        onSaveClick: () -> Unit,
+        onWebpageClick: () -> Unit,
+        onShareClick: () -> Unit
     ) {
         playerController.PLayerUI(
-            radio = radio
+            radio = radio,
+            isSaved = isSaved,
+            onSaveClick = onSaveClick,
+            onWebpageClick = onWebpageClick,
+            onShareClick = onShareClick
         )
     }
 
