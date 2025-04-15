@@ -18,12 +18,18 @@ import org.jetbrains.compose.resources.painterResource
 import org.onedroid.radiowave.app.theme.extraSmall
 import org.onedroid.radiowave.app.theme.thin
 import radiowave.composeapp.generated.resources.Res
+import radiowave.composeapp.generated.resources.ic_bookmark
 import radiowave.composeapp.generated.resources.ic_bookmark_border
 import radiowave.composeapp.generated.resources.ic_internet
 import radiowave.composeapp.generated.resources.ic_share
 
 @Composable
-fun RadioActionButtons() {
+fun RadioActionButtons(
+    isSaved: Boolean,
+    onSaveClick: () -> Unit,
+    onShareClick: () -> Unit,
+    onWebpageClick: () -> Unit,
+) {
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center,
@@ -31,23 +37,33 @@ fun RadioActionButtons() {
     ) {
         item {
             Button(
-                modifier = Modifier.padding(horizontal = thin).width(110.dp),
-                onClick = { /* TODO: Save action */ }
+                modifier = Modifier.padding(horizontal = thin).then(
+                    if (isSaved) Modifier.width(120.dp) else Modifier.width(110.dp)
+                ),
+                onClick = {
+                    onSaveClick()
+                }
             ) {
                 Icon(
                     modifier = Modifier.size(20.dp),
-                    painter = painterResource(Res.drawable.ic_bookmark_border),
+                    painter = if (isSaved) painterResource(Res.drawable.ic_bookmark) else painterResource(
+                        Res.drawable.ic_bookmark_border
+                    ),
                     contentDescription = "Save"
                 )
                 Spacer(modifier = Modifier.width(extraSmall))
-                Text(text = "Save")
+                Text(
+                    text = if (isSaved) "Saved" else "Save"
+                )
             }
         }
 
         item {
             Button(
                 modifier = Modifier.padding(horizontal = thin).width(115.dp),
-                onClick = { /* TODO: Share action */ }
+                onClick = {
+                    onShareClick()
+                }
             ) {
                 Icon(
                     modifier = Modifier.size(20.dp),
@@ -62,7 +78,9 @@ fun RadioActionButtons() {
         item {
             Button(
                 modifier = Modifier.padding(horizontal = thin).width(145.dp),
-                onClick = { /* TODO: Webpage action */ }
+                onClick = {
+                    onWebpageClick()
+                }
             ) {
                 Icon(
                     modifier = Modifier.size(20.dp),

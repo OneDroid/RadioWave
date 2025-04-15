@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import kotlinx.coroutines.delay
@@ -45,6 +46,7 @@ import org.onedroid.radiowave.app.theme.compactFeedWidth
 import org.onedroid.radiowave.app.theme.extraSmall
 import org.onedroid.radiowave.app.theme.medium
 import org.onedroid.radiowave.app.theme.small
+import org.onedroid.radiowave.app.utils.shareLink
 import org.onedroid.radiowave.presentation.home.components.ErrorMsgView
 import org.onedroid.radiowave.presentation.home.components.Feed
 import org.onedroid.radiowave.presentation.home.components.FeedTitle
@@ -88,13 +90,26 @@ fun HomeScreen(
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     val bottomSheetState = rememberBottomSheetScaffoldState()
     val scope = rememberCoroutineScope()
+    val urlHandler = LocalUriHandler.current
 
     BottomSheetScaffold(
         modifier = Modifier.fillMaxSize().nestedScroll(scrollBehavior.nestedScrollConnection),
         scaffoldState = bottomSheetState,
         sheetContent = {
             viewModel.selectedRadio?.let {
-                viewModel.playerRepository.PLayerUI(radio = it)
+                viewModel.playerRepository.PLayerUI(
+                    radio = it,
+                    isSaved = viewModel.isSaved,
+                    onWebpageClick = {
+                        it.homepage?.let { it1 -> urlHandler.openUri(it1) }
+                    },
+                    onShareClick = {
+                        shareLink(it.url)
+                    },
+                    onSaveClick = {
+                        viewModel.saveRadio(it)
+                    }
+                )
             }
         },
         sheetPeekHeight = if (viewModel.selectedRadio != null) BottomSheetDefaults.SheetPeekHeight else 0.dp,
@@ -152,7 +167,12 @@ fun HomeScreen(
                     )
                 } else {
                     RadioHorizontalGridItem(
-                        radios = viewModel.radios,
+                        radios = viewModel.savedRadios,
+                        onRadioClick = {
+                            viewModel.selectedRadio(it)
+                            scope.launch { bottomSheetState.bottomSheetState.expand() }
+                            viewModel.play(it.url)
+                        }
                     )
                 }
             }

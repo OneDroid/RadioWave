@@ -23,6 +23,7 @@ import org.onedroid.radiowave.app.theme.zero
 @Composable
 fun RadioHorizontalGridItem(
     radios: List<Radio>,
+    onRadioClick: (Radio) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val gridState = rememberLazyGridState()
@@ -50,7 +51,7 @@ fun RadioHorizontalGridItem(
             RadioGridItem(
                 radio = uniqueRadios[it],
                 onClick = {
-
+                    onRadioClick(uniqueRadios[it])
                 },
                 modifier = Modifier.width(horizontalGridMaxWidth)
             )

@@ -110,7 +110,13 @@ actual class PlayerController(context: Context) : PlayerRepository {
     }
 
     @Composable
-    override fun PLayerUI(radio: Radio) {
+    override fun PLayerUI(
+        radio: Radio,
+        isSaved: Boolean,
+        onSaveClick: () -> Unit,
+        onWebpageClick: () -> Unit,
+        onShareClick: () -> Unit
+    ) {
         val isPlayingState by isPlaying.collectAsState()
         LazyColumn(
             modifier = Modifier
@@ -139,7 +145,12 @@ actual class PlayerController(context: Context) : PlayerRepository {
                 )
             }
             item {
-                RadioActionButtons()
+                RadioActionButtons(
+                    isSaved = isSaved,
+                    onSaveClick = onSaveClick,
+                    onWebpageClick = onWebpageClick,
+                    onShareClick = onShareClick
+                )
             }
 
             item {
@@ -399,6 +410,7 @@ actual class PlayerController(context: Context) : PlayerRepository {
                         text = String.format("%d:%02d:%02d", hours, minutes, seconds)
                     )
                 }
+
                 else -> Text(stringResource(Res.string.now_playing))
             }
         }
