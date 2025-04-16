@@ -42,6 +42,8 @@
     <string name="homepage">Homepage</string>
     <string name="unknown">Unknown</string>
     <string name="map_location">Map Location</string>
+    <string name="saved_radios">Saved Radios</string>
+
 
     <!--Player-->
     <string name="now_playing">Now Playing:</string>

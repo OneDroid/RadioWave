@@ -33,9 +33,9 @@ fun RadioHorizontalGridItem(
 
     LazyHorizontalGrid(
         state = gridState,
-        rows = GridCells.Fixed(2),
+        rows = GridCells.Fixed(if (radios.size > 3) 2 else 1),
         modifier = modifier
-            .heightIn(max = horizontalGridMaxHeight)
+            .heightIn(max = if (radios.size > 3) horizontalGridMaxHeight else horizontalGridMaxHeight / 2 )
             .pointerInput(Unit) {
                 detectHorizontalDragGestures { change, dragAmount ->
                     change.consume()

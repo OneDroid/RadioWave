@@ -56,7 +56,7 @@ class RadioRepositoryImpl(
 
     override fun getSavedRadios(): Flow<List<Radio>> {
         return radioWaveDao.getSavedRadios().map { radioEntities ->
-            radioEntities.map { it.toRadio() }
+            radioEntities.sortedByDescending { it.timeStamp }.map { it.toRadio() }
         }
     }
 
