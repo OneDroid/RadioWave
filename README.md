@@ -5,4 +5,16 @@ RadioWave is a cross-platform internet radio player for Android and iOS, built w
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=OneDroid.RadioWave)
 [![SavePalestine](https://raw.githubusercontent.com/OneDroid/.github/refs/heads/main/images/badge/save-palestine.svg)](https://www.youtube.com/watch?v=O5fbyEV36pU)
 
+## App Features
+
+- Browse popular, trending, or top-voted stations
+- Automatic song recognition
+- Save Favorite Radios
+- Search Radios by name, genre, language, or country
+- Display station metadata like country, website, language
+- Dual Themes (Dark and Light)
+- Play / Pause / Volume Control
+- Audio Background Playback Support
+- User-Friendly Interface with Easy Navigation
+
 ![Alt](https://repobeats.axiom.co/api/embed/0ed4b95566c02078f950078ddc20956855283d18.svg "RadioWave")
