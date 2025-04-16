@@ -1,0 +1,23 @@
+RadioWave is a cross-platform internet radio player for Android and iOS, built with Kotlin Multiplatform. It provides access to over 50,000 stations worldwide with automatic song recognition that identifies what's playing in real time.
+
+Features
+
+- Browse popular, trending, or top-voted stations
+- One-click play with smooth streaming
+- Automatic song recognition
+- Save favorite Radios
+- Search Radios by name, genre, language, or country
+- Display station metadata like country, website, language
+- Dual Themes (Dark and Light)
+- Play / Pause / Volume Control
+- Audio Background Playback Support
+- User-Friendly Interface with Easy Navigation
+
+Under the Hood
+
+- Built with Kotlin Multiplatform
+- Lightweight and optimized for fast performance
+- Cross-platform support Android and iOS
+
+Support Developer
+https://www.buymeacoffee.com/tawhidmonowar
