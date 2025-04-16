@@ -120,6 +120,7 @@ class HomeViewModel(
             offset += limit
         }.onError { error ->
             errorMsg = error.toUiText()
+            isLoading = false
         }
     }
 

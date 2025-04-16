@@ -198,7 +198,8 @@ fun HomeScreen(
                         }
                     )
                 }
-            } else if (viewModel.isLoading) {
+            }
+            if (viewModel.isLoading) {
                 single {
                     Box(
                         modifier = Modifier.fillMaxSize(),
