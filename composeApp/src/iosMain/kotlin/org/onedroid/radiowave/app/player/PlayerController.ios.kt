@@ -109,7 +109,13 @@ actual class PlayerController : PlayerRepository {
     }
 
     @Composable
-    override fun PLayerUI(radio: Radio) {
+    override fun PLayerUI(
+        radio: Radio,
+        isSaved: Boolean,
+        onSaveClick: () -> Unit,
+        onWebpageClick: () -> Unit,
+        onShareClick: () -> Unit
+    ) {
         // Use `isPlaying.collectAsState()` and `metadataState.collectAsState()` here
         val isPlayingState by isPlaying.collectAsState()
         LazyColumn(
@@ -139,7 +145,12 @@ actual class PlayerController : PlayerRepository {
                 )
             }
             item {
-                RadioActionButtons()
+                RadioActionButtons(
+                    isSaved = isSaved,
+                    onSaveClick = onSaveClick,
+                    onWebpageClick = onWebpageClick,
+                    onShareClick = onShareClick
+                )
             }
 
             item {

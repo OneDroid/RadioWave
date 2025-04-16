@@ -90,7 +90,6 @@ fun SettingScreen(
                     itemName = stringResource(Res.string.theme)
                 )
             }
-
             item {
                 SettingItem(
                     onClick = {

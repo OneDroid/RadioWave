@@ -63,6 +63,7 @@ kotlin {
             implementation(libs.bundles.coil)
             implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
+            implementation(libs.kotlinx.datetime)
             api(libs.datastore.preferences)
             api(libs.datastore)
             api(libs.koin.core)

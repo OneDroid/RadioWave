@@ -16,6 +16,7 @@ desugar_jdk_libs = "2.1.5"
 junit = "4.13.2"
 kotlin = "2.1.0"
 koin = "4.0.0"
+kotlinxDatetime = "0.6.2"
 ktor = "3.0.0"
 coil3 = "3.0.0-rc02"
 navigationCompose = "2.8.0-alpha10"
@@ -43,6 +44,7 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
 navigation-compose = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 

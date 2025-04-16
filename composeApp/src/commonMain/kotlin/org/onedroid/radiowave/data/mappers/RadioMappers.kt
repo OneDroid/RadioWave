@@ -1,5 +1,6 @@
 package org.onedroid.radiowave.data.mappers
 
+import kotlinx.datetime.Clock
 import org.onedroid.radiowave.data.database.RadioEntity
 import org.onedroid.radiowave.data.dto.RadioSearchResponseDto
 import org.onedroid.radiowave.domain.Radio
@@ -77,7 +78,7 @@ fun Radio.toRadioEntity(
         geoLong = geoLong,
         hasExtendedInfo = hasExtendedInfo ?: false,
         isSaved = isSaved,
-        timeStamp = System.currentTimeMillis(),
+        timeStamp = Clock.System.now().toEpochMilliseconds(),
         serveruuid = "None"
     )
 }

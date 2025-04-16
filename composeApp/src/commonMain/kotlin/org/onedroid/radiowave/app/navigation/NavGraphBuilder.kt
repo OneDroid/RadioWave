@@ -16,7 +16,6 @@ fun NavGraphBuilder.navGraphBuilder(
             rootNavController = rootNavController
         )
     }
-
     composable<Route.Settings> {
         SettingScreen(
             viewModel = settingViewModel,

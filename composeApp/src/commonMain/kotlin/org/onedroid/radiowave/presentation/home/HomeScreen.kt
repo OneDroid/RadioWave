@@ -169,7 +169,6 @@ fun HomeScreen(
                 }
             }
 
-
             title(contentType = "latest-title") { FeedTitle(title = stringResource(Res.string.recently_updated)) }
 
             items(
@@ -221,7 +220,6 @@ fun HomeScreen(
     }
 
 }
-
 
 @Composable
 private fun ShowAboutDialog(

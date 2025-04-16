@@ -69,7 +69,6 @@ class RemoteRadioDataSourceImpl(
             }
         }
 
-        // Return the last error or a generic fallback
         return Result.Error(errors.lastOrNull() ?: DataError.Remote.UNKNOWN)
     }
 }
