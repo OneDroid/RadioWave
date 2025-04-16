@@ -47,6 +47,7 @@ import org.onedroid.radiowave.app.theme.extraSmall
 import org.onedroid.radiowave.app.theme.medium
 import org.onedroid.radiowave.app.theme.small
 import org.onedroid.radiowave.app.utils.shareLink
+import org.onedroid.radiowave.domain.Radio
 import org.onedroid.radiowave.presentation.home.components.ErrorMsgView
 import org.onedroid.radiowave.presentation.home.components.Feed
 import org.onedroid.radiowave.presentation.home.components.FeedTitle
@@ -55,7 +56,6 @@ import org.onedroid.radiowave.presentation.home.components.HomeTopAppBar
 import org.onedroid.radiowave.presentation.home.components.RadioGridItem
 import org.onedroid.radiowave.presentation.home.components.RadioHorizontalGridItem
 import org.onedroid.radiowave.presentation.home.components.RadioSearchResult
-import org.onedroid.radiowave.presentation.home.components.ShimmerEffect
 import org.onedroid.radiowave.presentation.home.components.row
 import org.onedroid.radiowave.presentation.home.components.single
 import org.onedroid.radiowave.presentation.home.components.title
@@ -86,7 +86,8 @@ fun HomeScreen(
     viewModel: HomeViewModel = koinViewModel()
 ) {
     val gridState = rememberLazyGridState()
-    val radiosSize by mutableStateOf(viewModel.radios.size)
+    val uniqueRadios = viewModel.radios.distinctBy { it.id to it.url }
+    val radiosSize by mutableStateOf(uniqueRadios.size)
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     val bottomSheetState = rememberBottomSheetScaffoldState()
     val scope = rememberCoroutineScope()
@@ -148,24 +149,15 @@ fun HomeScreen(
             horizontalArrangement = Arrangement.spacedBy(0.dp)
         ) {
 
-            title(contentType = "verified-title") {
-                FeedTitle(
-                    title = "Saved Radios",
-                    onClick = { }
-                )
-            }
-
-            row(contentType = "verified-shimmer-effect") {
-                if (viewModel.isLoading) {
-                    ShimmerEffect.RadioHorizontalGridItemShimmerEffect()
-                } else if (viewModel.errorMsg != null) {
-                    ErrorMsgView(
-                        errorMsg = viewModel.errorMsg!!,
-                        onRetryClick = {
-                            viewModel.getRadios()
-                        }
+            if (viewModel.savedRadios != emptyList<Radio>()) {
+                title(contentType = "Saved-title") {
+                    FeedTitle(
+                        title = "Saved Radios",
+                        onClick = { }
                     )
-                } else {
+                }
+
+                row(contentType = "verified-shimmer-effect") {
                     RadioHorizontalGridItem(
                         radios = viewModel.savedRadios,
                         onRadioClick = {
@@ -177,13 +169,14 @@ fun HomeScreen(
                 }
             }
 
+
             title(contentType = "latest-title") { FeedTitle(title = stringResource(Res.string.recently_updated)) }
 
             items(
                 count = radiosSize,
-                key = { index -> viewModel.radios[index].id }
+                key = { uniqueRadios[it].id }
             ) { index ->
-                val radio = viewModel.radios[index]
+                val radio = uniqueRadios[index]
                 if (index == radiosSize - 1 && !viewModel.isLoading && viewModel.errorMsg == null) {
                     viewModel.getRadios()
                 }
