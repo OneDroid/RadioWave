@@ -17,4 +17,8 @@ RadioWave is a cross-platform internet radio player for Android and iOS, built w
 - Audio Background Playback Support
 - User-Friendly Interface with Easy Navigation
 
+## Screenshots (Android)
+|![Home Screen](https://github.com/OneDroid/RadioWave/blob/main/fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpeg) | ![PLaying Screen](https://github.com/OneDroid/RadioWave/blob/main/fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpeg) | ![Search Screen](https://github.com/OneDroid/RadioWave/blob/main/fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpeg) |![Error Screen](https://github.com/OneDroid/RadioWave/blob/main/fastlane/metadata/android/en-US/images/phoneScreenshots/4.jpeg) |
+|:-------------------:|:------------------------:|:-----------------:|:-----------------:|
+
 ![Alt](https://repobeats.axiom.co/api/embed/0ed4b95566c02078f950078ddc20956855283d18.svg "RadioWave")
