@@ -35,7 +35,7 @@ This project follows the MVVM (Model-View-ViewModel) design pattern combined wit
 - The Domain Layer encapsulates business logic in UseCases, This layer is completely independent of other layers, ensuring that it can be reused and tested in isolation.
 - The Data Layer abstracts data sources (API, Database) through a Repository pattern.
 
-## Contribution analytics
+## Contribution Analytics
 ![analytics](https://repobeats.axiom.co/api/embed/0ed4b95566c02078f950078ddc20956855283d18.svg "RadioWave")
 
 ## Contributors  
