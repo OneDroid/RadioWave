@@ -6,8 +6,8 @@ RadioWave is a cross-platform internet radio player for Android and iOS, built w
 [![SavePalestine](https://raw.githubusercontent.com/OneDroid/.github/refs/heads/main/images/badge/save-palestine.svg)](https://www.youtube.com/watch?v=O5fbyEV36pU)
 
 ## Download
-[<img src="https://raw.githubusercontent.com/OneDroid/.github/220b8baeb925e81df5a3757fa878432bfb645b8c/images/badge/badge-github.svg" alt="" height="80">](https://github.com/OneDroid/RadioWave/releases)
-[<img src="https://raw.githubusercontent.com/OneDroid/.github/220b8baeb925e81df5a3757fa878432bfb645b8c/images/badge/badge-obtainium.svg" alt="" height="80">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/OneDroid/RadioWave)
+[<img src="https://raw.githubusercontent.com/OneDroid/.github/220b8baeb925e81df5a3757fa878432bfb645b8c/images/badge/badge-github.svg" alt="" height="60">](https://github.com/OneDroid/RadioWave/releases)
+[<img src="https://raw.githubusercontent.com/OneDroid/.github/220b8baeb925e81df5a3757fa878432bfb645b8c/images/badge/badge-obtainium.svg" alt="" height="60">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/OneDroid/RadioWave)
 
 ## App Features
 
@@ -22,6 +22,15 @@ RadioWave is a cross-platform internet radio player for Android and iOS, built w
 - User-Friendly Interface with Easy Navigation
 
 ## Screenshots (Android)
-![Screenshots](https://github.com/OneDroid/RadioWave/blob/main/readme/images/repository-template.jpg)
+|![Home Screen](https://github.com/OneDroid/RadioWave/blob/main/readme/images/1.png) | ![PLaying Screen](https://github.com/OneDroid/RadioWave/blob/main/readme/images/2.png) | ![Search Screen](https://github.com/OneDroid/RadioWave/blob/main/readme/images/3.png) |![Error Screen](https://github.com/OneDroid/RadioWave/blob/main/readme/images/4.png) |
+|:-------------------:|:------------------------:|:-----------------:|:-----------------:|
 
 ![Alt](https://repobeats.axiom.co/api/embed/0ed4b95566c02078f950078ddc20956855283d18.svg "RadioWave")
+
+## Contributors  
+
+We appreciate everyone who has contributed to this project! Your support and contributions help make **RadioWave** better every day.  
+
+<a href="https://github.com/OneDroid/RadioWave/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=OneDroid/RadioWave&max=100&columns=20" alt="Contributors" />
+</a>
