@@ -1,6 +1,8 @@
 ## RadioWave
 RadioWave is a cross-platform internet radio player for Android and iOS, built with Kotlin Multiplatform. It provides access to over 50,000 stations worldwide with automatic song recognition that identifies what's playing in real time.
 
+[![License](https://img.shields.io/badge/license-GPLv3-yellow.svg)](LICENSE)
+![Static Badge](https://img.shields.io/badge/Platforms-Android%20%26%20iOS-8A2BE2)
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/OneDroid/RadioWave/total)
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=OneDroid.RadioWave)
 [![SavePalestine](https://raw.githubusercontent.com/OneDroid/.github/refs/heads/main/images/badge/save-palestine.svg)](https://www.youtube.com/watch?v=O5fbyEV36pU)
@@ -8,6 +10,8 @@ RadioWave is a cross-platform internet radio player for Android and iOS, built w
 ## Download
 [<img src="https://raw.githubusercontent.com/OneDroid/.github/220b8baeb925e81df5a3757fa878432bfb645b8c/images/badge/badge-github.svg" alt="" height="60">](https://github.com/OneDroid/RadioWave/releases)
 [<img src="https://raw.githubusercontent.com/OneDroid/.github/220b8baeb925e81df5a3757fa878432bfb645b8c/images/badge/badge-obtainium.svg" alt="" height="60">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/OneDroid/RadioWave)
+
+SHA-256: `ED:1E:40:16:F2:4E:35:01:DD:C3:02:6B:AC:A0:4E:C8:C8:21:09:E7:48:EC:9F:81:79:32:80:3A:83:8D:80:F8`
 
 ## App Features
 
