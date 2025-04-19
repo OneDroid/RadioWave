@@ -25,7 +25,18 @@ RadioWave is a cross-platform internet radio player for Android and iOS, built w
 |![Home Screen](https://github.com/OneDroid/RadioWave/blob/main/readme/images/1.png) | ![PLaying Screen](https://github.com/OneDroid/RadioWave/blob/main/readme/images/2.png) | ![Search Screen](https://github.com/OneDroid/RadioWave/blob/main/readme/images/3.png) |![Error Screen](https://github.com/OneDroid/RadioWave/blob/main/readme/images/4.png) |
 |:-------------------:|:------------------------:|:-----------------:|:-----------------:|
 
-![Alt](https://repobeats.axiom.co/api/embed/0ed4b95566c02078f950078ddc20956855283d18.svg "RadioWave")
+## Architecture Overview
+
+This project follows the MVVM (Model-View-ViewModel) design pattern combined with Clean Architecture principles to ensure a scalable, maintainable, and testable structure.
+
+![image](https://github.com/OneDroid/RadioWave/blob/main/readme/images/architecture-overview.jpg)
+
+- The Presentation Layer is responsible for rendering the UI and managing user interactions via a unidirectional flow of Intent, Action, and ViewModel.
+- The Domain Layer encapsulates business logic in UseCases, This layer is completely independent of other layers, ensuring that it can be reused and tested in isolation.
+- The Data Layer abstracts data sources (API, Database) through a Repository pattern.
+
+## Contribution analytics
+![analytics](https://repobeats.axiom.co/api/embed/0ed4b95566c02078f950078ddc20956855283d18.svg "RadioWave")
 
 ## Contributors  
 
