@@ -40,6 +40,25 @@ This project follows the MVVM (Model-View-ViewModel) design pattern combined wit
 - The Domain Layer encapsulates business logic in UseCases, This layer is completely independent of other layers, ensuring that it can be reused and tested in isolation.
 - The Data Layer abstracts data sources (API, Database) through a Repository pattern.
 
+
+## Technologies and Libraries Used
+
+This project is powered by a combination of awesome technologies and libraries, Below is a list of what’s used.
+
+| Name                                      | Description                                                  |
+|-------------------------------------------|--------------------------------------------------------------|
+| [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html) | Simplifies the development of cross-platform projects.       |
+| [Compose Multiplatform](https://www.jetbrains.com/compose-multiplatform) | Builds responsive, modern user interfaces across multiple platforms. |
+| [Kotlin Serialization](https://kotlinlang.org/docs/serialization.html) | Handles JSON and other formats with built-in serialization support. |
+| [Material3](https://developer.android.com/jetpack/androidx/releases/compose-material3) | Provides Material Design 3 components and guidelines for UI design. |
+| [Datastore Preferences](https://developer.android.com/topic/libraries/architecture/datastore) | A modern tool for storing key-value data locally.            |
+| [Koin](https://insert-koin.io/)           | Manages dependencies in Kotlin apps with minimal effort.     |
+| [Ktor Client](https://ktor.io/docs/getting-started-ktor-client.html) | Handles HTTP requests and networking in Kotlin.              |
+| [Coil](https://coil-kt.github.io/coil)    | Loads images efficiently, designed specifically for Kotlin and Jetpack Compose. |
+| [Media3 ExoPlayer](https://developer.android.com/media/media3/exoplayer) | Seamless audio and video playback for Android apps.          |
+| [SQLite](https://developer.android.com/jetpack/androidx/releases/sqlite) | An embedded SQL database for structured data storage.         |
+| [Radio Browser API](https://www.radio-browser.info)   | A free and open-source API to search and stream online radio stations. |
+
 ## Contribution Analytics
 ![analytics](https://repobeats.axiom.co/api/embed/0ed4b95566c02078f950078ddc20956855283d18.svg "RadioWave")
 
