@@ -11,7 +11,7 @@ RadioWave is a cross-platform internet radio player for Android and iOS, built w
 ## Download
 [<img src="https://raw.githubusercontent.com/OneDroid/.github/220b8baeb925e81df5a3757fa878432bfb645b8c/images/badge/badge-github.svg" alt="Download from GitHub" height="60">](https://github.com/OneDroid/RadioWave/releases)
 [<img src="https://raw.githubusercontent.com/OneDroid/.github/220b8baeb925e81df5a3757fa878432bfb645b8c/images/badge/badge-obtainium.svg" alt="Download from Obtainium" height="60">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/OneDroid/RadioWave)
-[<img src="https://raw.githubusercontent.com/OneDroid/.github/ea0fa1a07e882cb4c645931cc0659190a6eb7c69/images/badge/badge-openapk.svg" alt="Download from OpenApk" height="60">](https://www.openapk.net/radiowave/org.onedroid.radiowave)
+[<img src="https://raw.githubusercontent.com/OneDroid/.github/ea0fa1a07e882cb4c645931cc0659190a6eb7c69/images/badge/badge-openapk.svg" alt="Download from OpenApk" height="60">](https://www.openapk.net/radiowave/org.onedroid.radiowave/)
 
 SHA-256: `ED:1E:40:16:F2:4E:35:01:DD:C3:02:6B:AC:A0:4E:C8:C8:21:09:E7:48:EC:9F:81:79:32:80:3A:83:8D:80:F8`
 
