@@ -15,6 +15,8 @@ RadioWave is a cross-platform internet radio player for Android and iOS, built w
 
 SHA-256: `ED:1E:40:16:F2:4E:35:01:DD:C3:02:6B:AC:A0:4E:C8:C8:21:09:E7:48:EC:9F:81:79:32:80:3A:83:8D:80:F8`
 
+> ⚠️ **Note:** The iOS version is currently in early access and has not been fully tested yet.
+
 ## App Features
 
 - Browse popular, trending, or top-voted stations
