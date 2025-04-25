@@ -2,7 +2,8 @@
 RadioWave is a cross-platform internet radio player for Android and iOS, built with Kotlin Multiplatform. It provides access to over 50,000 stations worldwide with automatic song recognition that identifies what's playing in real time.
 
 [![License](https://img.shields.io/badge/license-GPLv3-yellow.svg)](LICENSE)
-![GitHub Release](https://img.shields.io/github/v/release/OneDroid/RadioWave)
+![GitHub Release](https://img.shields.io/github/v/release/OneDroid/RadioWave?logo=github)
+![Fdroid Release](https://img.shields.io/f-droid/v/org.onedroid.radiowave.svg?logo=F-Droid)
 ![Static Badge](https://img.shields.io/badge/Platforms-Android%20%26%20iOS-8A2BE2)
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/OneDroid/RadioWave/total)
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=OneDroid.RadioWave)
@@ -12,6 +13,7 @@ RadioWave is a cross-platform internet radio player for Android and iOS, built w
 [<img src="https://raw.githubusercontent.com/OneDroid/.github/220b8baeb925e81df5a3757fa878432bfb645b8c/images/badge/badge-github.svg" alt="Download from GitHub" height="60">](https://github.com/OneDroid/RadioWave/releases)
 [<img src="https://raw.githubusercontent.com/OneDroid/.github/220b8baeb925e81df5a3757fa878432bfb645b8c/images/badge/badge-obtainium.svg" alt="Download from Obtainium" height="60">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/OneDroid/RadioWave)
 [<img src="https://raw.githubusercontent.com/OneDroid/.github/ea0fa1a07e882cb4c645931cc0659190a6eb7c69/images/badge/badge-openapk.svg" alt="Download from OpenApk" height="60">](https://www.openapk.net/radiowave/org.onedroid.radiowave/)
+[<img src="https://raw.githubusercontent.com/OneDroid/.github/ea0fa1a07e882cb4c645931cc0659190a6eb7c69/images/badge/badge-fdroid.svg" alt="Download from F-droid" height="60">](https://f-droid.org/en/packages/org.onedroid.radiowave/)
 
 SHA-256: `ED:1E:40:16:F2:4E:35:01:DD:C3:02:6B:AC:A0:4E:C8:C8:21:09:E7:48:EC:9F:81:79:32:80:3A:83:8D:80:F8`
 
