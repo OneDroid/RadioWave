@@ -19,6 +19,15 @@ SHA-256: `ED:1E:40:16:F2:4E:35:01:DD:C3:02:6B:AC:A0:4E:C8:C8:21:09:E7:48:EC:9F:8
 
 > ⚠️ **Note:** The iOS version is currently in early access and has not been fully tested yet.
 
+
+## Sponsor this Project
+
+<p align="left">
+  <a href="https://www.buymeacoffee.com/yourusername" target="_blank">
+    <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=tawhidmonowar&button_colour=FFDD00&font_colour=000000&font_family=Comic&outline_colour=000000&coffee_colour=ffffff" alt="Buy Me A Coffee" width="250" />
+  </a>
+</p>
+
 ## App Features
 
 - Browse popular, trending, or top-voted stations
