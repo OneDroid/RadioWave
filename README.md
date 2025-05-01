@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/OneDroid/RadioWave/blob/main/readme/web/icon-512.png?raw=true" alt="RadioWave Logo" width="100" />
+</p>
+
 ## RadioWave
 RadioWave is a cross-platform internet radio player for Android and iOS, built with Kotlin Multiplatform. It provides access to over 50,000 stations worldwide with automatic song recognition that identifies what's playing in real time.
 
