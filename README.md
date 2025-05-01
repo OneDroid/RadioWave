@@ -5,7 +5,7 @@ RadioWave is a cross-platform internet radio player for Android and iOS, built w
 ![GitHub Release](https://img.shields.io/github/v/release/OneDroid/RadioWave?logo=github)
 ![Fdroid Release](https://img.shields.io/f-droid/v/org.onedroid.radiowave.svg?logo=F-Droid)
 ![Static Badge](https://img.shields.io/badge/Platforms-Android%20%26%20iOS-8A2BE2)
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/OneDroid/RadioWave/total)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/OneDroid/RadioWave/total?logo=github)
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=OneDroid.RadioWave)
 [![SavePalestine](https://raw.githubusercontent.com/OneDroid/.github/refs/heads/main/images/badge/save-palestine.svg)](https://www.youtube.com/watch?v=O5fbyEV36pU)
 
