@@ -1,7 +1,9 @@
-<img src="https://github.com/OneDroid/RadioWave/blob/main/readme/web/icon-512.png?raw=true" alt="RadioWave Logo" width="100" />
-
-## RadioWave
+<div align="center">
+<p><img src="https://github.com/OneDroid/RadioWave/blob/main/readme/web/icon-512.png" alt="RadioWave Logo" width="128"/></p>
+<h3 align="center">RadioWave</h3>
+  <p align="center">
 RadioWave is a cross-platform internet radio player for Android and iOS, built with Kotlin Multiplatform. It provides access to over 50,000 stations worldwide with automatic song recognition that identifies what's playing in real time.
+  </p>
 
 [![License](https://img.shields.io/badge/license-GPLv3-yellow.svg)](LICENSE)
 ![GitHub Release](https://img.shields.io/github/v/release/OneDroid/RadioWave?logo=github)
@@ -10,6 +12,8 @@ RadioWave is a cross-platform internet radio player for Android and iOS, built w
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/OneDroid/RadioWave/total?logo=github&color=brightgreen)
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=OneDroid.RadioWave)
 [![SavePalestine](https://raw.githubusercontent.com/OneDroid/.github/refs/heads/main/images/badge/save-palestine.svg)](https://www.youtube.com/watch?v=O5fbyEV36pU)
+
+</div>
 
 ## Download
 [<img src="https://raw.githubusercontent.com/OneDroid/.github/220b8baeb925e81df5a3757fa878432bfb645b8c/images/badge/badge-github.svg" alt="Download from GitHub" height="60">](https://github.com/OneDroid/RadioWave/releases)
