@@ -86,5 +86,5 @@ This project is powered by a combination of awesome technologies and libraries, 
 We appreciate everyone who has contributed to this project! Your support and contributions help make **RadioWave** better every day.  
 
 <a href="https://github.com/OneDroid/RadioWave/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=OneDroid/RadioWave&max=100&columns=20" alt="Contributors" />
+  <img src="http://contrib.rocks/image?repo=OneDroid/RadioWave&max=100&columns=20" alt="Contributors" />
 </a>
