@@ -37,6 +37,15 @@ SHA-256: `ED:1E:40:16:F2:4E:35:01:DD:C3:02:6B:AC:A0:4E:C8:C8:21:09:E7:48:EC:9F:8
 - Audio Background Playback Support
 - User-Friendly Interface with Easy Navigation
 
+## To-Do 
+- 
+  - timer [#18](https://github.com/OneDroid/RadioWave/issues/18)
+  - load all stations at once [#17](https://github.com/OneDroid/RadioWave/issues/17)
+  - Minimize API calls [#17](https://github.com/OneDroid/RadioWave/issues/17)
+  - Radio playing notification
+  - filter to radio search
+  - lyrics finder for tracks
+
 ## Sponsor this Project
 
 <p align="left">
