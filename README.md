@@ -37,15 +37,6 @@ SHA-256: `ED:1E:40:16:F2:4E:35:01:DD:C3:02:6B:AC:A0:4E:C8:C8:21:09:E7:48:EC:9F:8
 - Audio Background Playback Support
 - User-Friendly Interface with Easy Navigation
 
-## To-Do 
-- 
-  - timer [#18](https://github.com/OneDroid/RadioWave/issues/18)
-  - load all stations at once [#17](https://github.com/OneDroid/RadioWave/issues/17)
-  - Minimize API calls [#17](https://github.com/OneDroid/RadioWave/issues/17)
-  - Radio playing notification
-  - filter to radio search
-  - lyrics finder for tracks
-
 ## Sponsor this Project
 
 <p align="left">
@@ -53,6 +44,15 @@ SHA-256: `ED:1E:40:16:F2:4E:35:01:DD:C3:02:6B:AC:A0:4E:C8:C8:21:09:E7:48:EC:9F:8
     <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=tawhidmonowar&button_colour=FFDD00&font_colour=000000&font_family=Comic&outline_colour=000000&coffee_colour=ffffff" alt="Buy Me A Coffee" width="250" />
   </a>
 </p>
+
+## To-Do 
+- timer [#18](https://github.com/OneDroid/RadioWave/issues/18)
+- load all stations at once [#17](https://github.com/OneDroid/RadioWave/issues/17)
+- Minimize API calls [#17](https://github.com/OneDroid/RadioWave/issues/17)
+- Radio playing notification
+- filter to radio search
+- lyrics finder for tracks
+
 
 ## Screenshots (Android)
 |![Home Screen](https://github.com/OneDroid/RadioWave/blob/main/readme/images/1.png) | ![PLaying Screen](https://github.com/OneDroid/RadioWave/blob/main/readme/images/2.png) | ![Search Screen](https://github.com/OneDroid/RadioWave/blob/main/readme/images/3.png) |![Error Screen](https://github.com/OneDroid/RadioWave/blob/main/readme/images/4.png) |
