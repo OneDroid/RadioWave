@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Radio Wave</string>
+    
+    <!--Settings-->
+    <string name="theme">nu se jikca</string>
+    <string name="dark_mode">ckire purdi</string>
+    <string name="light_mode">lojbo purdi</string>
+    <string name="system_default">sutra se terdi</string>
+    <string name="choose_a_theme">selgu'e lo nu se jikca</string>
+    <string name="close">claxu</string>
+    <string name="setting">jimpe</string>
+    <string name="go_back">tacru le nu renro</string>
+    <string name="clear">munje</string>
+    <string name="cancel">coi'u</string>
+    <string name="apply">cfari</string>
+    <string name="delete">fenki lo ka stela</string>
+    <string name="clear_data_title">stela co'u cizra</string>
+    <string name="clear_data_warning">xu do djica lo nu fenki tu'a ro da poi se cusku lo se sanga be ti? ti na kakne lo nu zivle lo nu ponse lo se jbosku be ro da.</string>
+
+    <!--Radio-->
+    <string name="search_radios">sutra radjo</string>
+    <string name="trending_radios">radjo poi bajra le nu renvi</string>
+    <string name="verified">bancu cu kanro</string>
+    <string name="latest_radios">radjo poi cu fanmo</string>
+    <string name="no_radios_found">"na djica lo radjo"</string>
+    <string name="online_radio_stations">selpa radjo bu'u le rete</string>
+    <string name="radio_cover_background">tarci cpacu radjo</string>
+    <string name="radio_cover">cpacu radjo</string>
+    <string name="verified_title">bancu titla</string>
+    <string name="verified_list">bancu listi</string>
+    <string name="latest_title">fanmo titla</string>
+    <string name="circular-progress-indicator">rotci-cika jikca ciste</string>
+    <string name="recently_updated">fanmo stela</string>
+    <string name="radio_disclaimer">le radjo cu bajra fi le Radio Browser API</string>
+    <string name="retry">zu'e pu lo nu catlu</string>
+    <string name="no_search_result">na xabka lo nu sutra</string>
+    <string name="radio_details">jufra be le radjo</string>
+    <string name="country">terdi</string>
+    <string name="state">jbini</string>
+    <string name="bitrate">bitrate (terto'e)</string>
+    <string name="language">bangu</string>
+    <string name="homepage">cnexu tcica</string>
+    <string name="unknown">na djuno</string>
+    <string name="map_location">stuzi be le mapti</string>
+    <string name="saved_radios">se ponse radjo</string>
+
+    <!--Player-->
+    <string name="now_playing">ca zvati lo nu claxu:</string>
+    <string name="detecting">djuno co'u catlu...</string>
+    <string name="unable_to_detect">na kakne lo nu catlu!</string>
+    <string name="play">catlu</string>
+    <string name="pause">pabitra</string>
+    <string name="volume_up">bangu kanla</string>
+    <string name="volume_down">bangu mrilu</string>
+    <string name="player_status_indicator">smuci be lo djica be le banli</string>
+
+    <!--Content Description-->
+    <string name="info">cmalu sisku</string>
+    <string name="settings">jimpe</string>
+    <string name="search">catlu</string>
+    <string name="clear_data">fenki da se jbosku</string>
+    <string name="back">ce'u renvi</string>
+    <string name="right_arrow">le terdi gazni</string>
+
+    <!--Error Messages-->
+    <string name="error_disk_full">oi, zo'u do terdi cu fulli</string>
+    <string name="error_unknown">oi, zo'u ca na djuno ro da</string>
+    <string name="error_request_timeout">le nu catlu cu bajra le nu facki</string>
+    <string name="error_no_internet">na kakne lo nu rivbi le server, zo'u je catlu le bangu rete</string>
+    <string name="error_too_many_requests">do se klama le nu zu'e to'e bebna</string>
+    <string name="error_serialization">na kakne lo nu spofu lo se catlu be lai datni</string>
+    <string name="invalid_image">se spofu lo .pinta</string>
+
+    <!--About-->
+    <string name="about">do djuno</string>
+    <string name="developer">se zukte fa OneDroid</string>
+    <string name="maintainer">se cjino fa Tawhid Monowar</string>
+    <string name="last_updated_label">fanmo se stela</string>
+    <string name="last_updated_date">anpe 2025</string>
+    <string name="contact_label">se cmalu</string>
+    <string name="contact_email">contact.onedroid@gmail.com</string>
+    <string name="github_label">Github</string>
+    <string name="github_url">https://github.com/OneDroid/RadioWave</string>
+    <string name="webpage_label">se tcica bu'u le rete</string>
+    <string name="webpage_url">https://onedroid.github.io</string>
+    <string name="license_label">se tarmi</string>
+    <string name="license_type">GPL-3.0 se tarmi</string>
+    <string name="version_label">gna se tcica</string>
+    <string name="version_number">1.0.0</string>
+    <string name="about_app">lo radjo vacri cu ko'icpu lo nu catlu le rete poi se ponse lo se listi be re piro lo station. cu se jgari lo Radio Browser API lo nu catlu lo radjo.</string>
+
+</resources>
