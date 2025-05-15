@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Radio Wave</string>
+
+    <!--Settings-->
+    <string name="theme">Thema</string>
+    <string name="dark_mode">Dunkelmodus</string>
+    <string name="light_mode">Hellmodus</string>
+    <string name="system_default">Systemstandard</string>
+    <string name="choose_a_theme">Wähle ein Thema</string>
+    <string name="close">Schließen</string>
+    <string name="setting">Einstellung</string>
+    <string name="go_back">Zurückgehen</string>
+    <string name="clear">Löschen</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="apply">Anwenden</string>
+    <string name="delete">Löschen</string>
+    <string name="clear_data_title">Löschbestätigung</string>
+    <string name="clear_data_warning">Möchten Sie wirklich alle gespeicherten Daten löschen? Diese Aktion kann nicht rückgängig gemacht werden, und Sie verlieren dauerhaft alle gespeicherten Informationen.</string>
+
+    <!--Radio-->
+    <string name="search_radios">Radios Suchen</string>
+    <string name="trending_radios">Beliebte Radios</string>
+    <string name="verified">Verifiziert</string>
+    <string name="latest_radios">Neueste Radios</string>
+    <string name="no_radios_found">"Keine Radios gefunden!"</string>
+    <string name="online_radio_stations">Online-Radiosender</string>
+    <string name="radio_cover_background">Hintergrund der Radiocover</string>
+    <string name="radio_cover">Radiocover</string>
+    <string name="verified_title">verifizierte-Titel</string>
+    <string name="verified_list">verifizierte-Liste</string>
+    <string name="latest_title">neueste-Titel</string>
+    <string name="circular-progress-indicator">Kreisförmiger Ladebalken</string>
+    <string name="recently_updated">Kürzlich aktualisiert</string>
+    <string name="radio_disclaimer">Radios stammen von der Radio Browser API</string>
+    <string name="retry">Erneut versuchen</string>
+    <string name="no_search_result">Keine Suchergebnisse</string>
+    <string name="radio_details">Radio-Details</string>
+    <string name="country">Land</string>
+    <string name="state">Bundesland</string>
+    <string name="bitrate">Bitrate</string>
+    <string name="language">Sprache</string>
+    <string name="homepage">Startseite</string>
+    <string name="unknown">Unbekannt</string>
+    <string name="map_location">Kartenort</string>
+    <string name="saved_radios">Gespeicherte Radios</string>
+
+    <!--Player-->
+    <string name="now_playing">Aktueller Titel:</string>
+    <string name="detecting">Wird erkannt...</string>
+    <string name="unable_to_detect">Erkennung fehlgeschlagen!</string>
+    <string name="play">Abspielen</string>
+    <string name="pause">Pause</string>
+    <string name="volume_up">Lauter</string>
+    <string name="volume_down">Leiser</string>
+    <string name="player_status_indicator">Player-Statusanzeige</string>
+
+    <!--Content Description-->
+    <string name="info">Info</string>
+    <string name="settings">Einstellungen</string>
+    <string name="search">Suche</string>
+    <string name="clear_data">Daten löschen</string>
+    <string name="back">Zurück</string>
+    <string name="right_arrow">Pfeil nach rechts</string>
+
+    <!--Error Messages-->
+    <string name="error_disk_full">Hoppla, es scheint, dass Ihre Festplatte voll ist.</string>
+    <string name="error_unknown">Hoppla, etwas ist schiefgelaufen.</string>
+    <string name="error_request_timeout">Die Anfrage hat zu lange gedauert.</string>
+    <string name="error_no_internet">Server konnte nicht erreicht werden, bitte überprüfen Sie Ihre Internetverbindung.</string>
+    <string name="error_too_many_requests">Ihr Limit scheint überschritten zu sein.</string>
+    <string name="error_serialization">Daten konnten nicht verarbeitet werden.</string>
+    <string name="invalid_image">Ungültiges Bild</string>
+
+    <!--About-->
+    <string name="about">Über</string>
+    <string name="developer">Entwickelt von OneDroid</string>
+    <string name="maintainer">Wartung durch Tawhid Monowar</string>
+    <string name="last_updated_label">Zuletzt aktualisiert</string>
+    <string name="last_updated_date">April 2025</string>
+    <string name="contact_label">Kontakt</string>
+    <string name="contact_email">contact.onedroid@gmail.com</string>
+    <string name="github_label">Github</string>
+    <string name="github_url">https://github.com/OneDroid/RadioWave</string>
+    <string name="webpage_label">Webseite</string>
+    <string name="webpage_url">https://onedroid.github.io</string>
+    <string name="license_label">Lizenz</string>
+    <string name="license_type">GPL-3.0 Lizenz</string>
+    <string name="version_label">Version</string>
+    <string name="version_number">1.0.0</string>
+    <string name="about_app">RadioWave ist ein Internetradio-Player, der Zugriff auf eine Datenbank mit über 50.000 Sendern bietet. Er verwendet die Radio Browser API, um Radiosender abzurufen.</string>
+
+</resources>
