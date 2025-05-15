@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Radio Wave</string>
+
+    <!--Settings-->
+    <string name="theme">主题</string>
+    <string name="dark_mode">深色模式</string>
+    <string name="light_mode">浅色模式</string>
+    <string name="system_default">系统默认</string>
+    <string name="choose_a_theme">选择一个主题</string>
+    <string name="close">关闭</string>
+    <string name="setting">设置</string>
+    <string name="go_back">返回</string>
+    <string name="clear">清除</string>
+    <string name="cancel">取消</string>
+    <string name="apply">应用</string>
+    <string name="delete">删除</string>
+    <string name="clear_data_title">确认删除</string>
+    <string name="clear_data_warning">您确定要删除所有已保存的数据吗? 此操作无法撤销, 您将永久丢失所有已保存的信息。</string>
+
+    <!--Radio-->
+    <string name="search_radios">搜索电台</string>
+    <string name="trending_radios">热门电台</string>
+    <string name="verified">已验证</string>
+    <string name="latest_radios">最新电台</string>
+    <string name="no_radios_found">未找到电台！</string>
+    <string name="online_radio_stations">在线广播电台</string>
+    <string name="radio_cover_background">电台封面背景</string>
+    <string name="radio_cover">电台封面</string>
+    <string name="verified_title">已验证标题</string>
+    <string name="verified_list">已验证列表</string>
+    <string name="latest_title">最新标题</string>
+    <string name="circular-progress-indicator">圆形进度指示器</string>
+    <string name="recently_updated">最近更新</string>
+    <string name="radio_disclaimer">电台数据来自 Radio Browser API</string>
+    <string name="retry">重试</string>
+    <string name="no_search_result">没有搜索结果</string>
+    <string name="radio_details">电台详情</string>
+    <string name="country">国家</string>
+    <string name="state">州/省</string>
+    <string name="bitrate">比特率</string>
+    <string name="language">语言</string>
+    <string name="homepage">主页</string>
+    <string name="unknown">未知</string>
+    <string name="map_location">地图位置</string>
+    <string name="saved_radios">已保存的电台</string>
+
+    <!--Player-->
+    <string name="now_playing">正在播放：</string>
+    <string name="detecting">正在检测...</string>
+    <string name="unable_to_detect">无法检测！</string>
+    <string name="play">播放</string>
+    <string name="pause">暂停</string>
+    <string name="volume_up">音量增大</string>
+    <string name="volume_down">音量减小</string>
+    <string name="player_status_indicator">播放器状态指示器</string>
+
+    <!--Content Description-->
+    <string name="info">信息</string>
+    <string name="settings">设置</string>
+    <string name="search">搜索</string>
+    <string name="clear_data">清除数据</string>
+    <string name="back">返回</string>
+    <string name="right_arrow">右箭头</string>
+
+    <!--Error Messages-->
+    <string name="error_disk_full">糟糕, 您的磁盘似乎已满。</string>
+    <string name="error_unknown">糟糕, 发生了一些错误。</string>
+    <string name="error_request_timeout">请求超时。</string>
+    <string name="error_no_internet">无法连接服务器, 请检查您的互联网连接。</string>
+    <string name="error_too_many_requests">您的配额似乎已超出。</string>
+    <string name="error_serialization">无法解析数据。</string>
+    <string name="invalid_image">无效的图片</string>
+	
+    <!--About-->
+    <string name="about">关于</string>
+    <string name="developer">由 OneDroid 开发</string>
+    <string name="maintainer">由 Tawhid Monowar 维护</string>
+    <string name="last_updated_label">上次更新</string>
+    <string name="last_updated_date">2025年4月</string>
+    <string name="contact_label">联系方式</string>
+    <string name="contact_email">contact.onedroid@gmail.com</string>
+    <string name="github_label">Github</string>
+    <string name="github_url">https://github.com/OneDroid/RadioWave</string>
+    <string name="webpage_label">网页</string>
+    <string name="webpage_url">https://onedroid.github.io</string>
+    <string name="license_label">许可</string>
+    <string name="license_type">GPL-3.0 许可</string>
+    <string name="version_label">版本</string>
+    <string name="version_number">1.0.0</string>
+    <string name="about_app">RadioWave 是一款互联网广播播放器, 提供超过 50,000 个电台的数据库访问。它使用 Radio Browser API 获取广播电台。</string>
+
+</resources>
