@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Radio Wave</string>
+
+    <!--Settings-->
+    <string name="theme">Тема</string>
+    <string name="dark_mode">Тёмный режим</string>
+    <string name="light_mode">Светлый режим</string>
+    <string name="system_default">Системная тема</string>
+    <string name="choose_a_theme">Выберите тему</string>
+    <string name="close">Закрыть</string>
+    <string name="setting">Настройки</string>
+    <string name="go_back">Назад</string>
+    <string name="clear">Очистить</string>
+    <string name="cancel">Отмена</string>
+    <string name="apply">Применить</string>
+    <string name="delete">Удалить</string>
+    <string name="clear_data_title">Подтвердите удаление</string>
+    <string name="clear_data_warning">Вы уверены, что хотите удалить все сохранённые данные? Это действие необратимо, и вы навсегда потеряете всю сохранённую информацию.</string>
+
+    <!--Radio-->
+    <string name="search_radios">Поиск радиостанций</string>
+    <string name="trending_radios">Популярные радиостанции</string>
+    <string name="verified">Проверено</string>
+    <string name="latest_radios">Последние радиостанции</string>
+    <string name="no_radios_found">"Радиостанции не найдены!"</string>
+    <string name="online_radio_stations">Онлайн радиостанции</string>
+    <string name="radio_cover_background">Фон обложки радиостанции</string>
+    <string name="radio_cover">Обложка радиостанции</string>
+    <string name="verified_title">verified-title</string>
+    <string name="verified_list">verified-list</string>
+    <string name="latest_title">latest-title</string>
+    <string name="circular-progress-indicator">circular-progress-indicator</string>
+    <string name="recently_updated">Недавно обновлённые</string>
+    <string name="radio_disclaimer">Радиостанции предоставлены API Radio Browser</string>
+    <string name="retry">Повторить</string>
+    <string name="no_search_result">Нет результатов поиска</string>
+    <string name="radio_details">Детали радиостанции</string>
+    <string name="country">Страна</string>
+    <string name="state">Область</string>
+    <string name="bitrate">Битрейт</string>
+    <string name="language">Язык</string>
+    <string name="homepage">Домашняя страница</string>
+    <string name="unknown">Неизвестно</string>
+    <string name="map_location">Местоположение на карте</string>
+    <string name="saved_radios">Сохранённые радиостанции</string>
+
+
+    <!--Player-->
+    <string name="now_playing">Сейчас играет:</string>
+    <string name="detecting">Обнаружение...</string>
+    <string name="unable_to_detect">Невозможно определить!</string>
+    <string name="play">Воспроизвести</string>
+    <string name="pause">Пауза</string>
+    <string name="volume_up">Увеличить громкость</string>
+    <string name="volume_down">Уменьшить громкость</string>
+    <string name="player_status_indicator">Индикатор состояния плеера</string>
+
+    <!--Content Description-->
+    <string name="info">Информация</string>
+    <string name="settings">Настройки</string>
+    <string name="search">Поиск</string>
+    <string name="clear_data">Очистить данные</string>
+    <string name="back">Назад</string>
+    <string name="right_arrow">Стрелка вправо</string>
+
+    <!--Error Messages-->
+    <string name="error_disk_full">Упс, похоже, ваш диск заполнен.</string>
+    <string name="error_unknown">Упс, что-то пошло не так.</string>
+    <string name="error_request_timeout">Время ожидания запроса истекло.</string>
+    <string name="error_no_internet">Не удалось подключиться к серверу, пожалуйста, проверьте ваше интернет-соединение.</string>
+    <string name="error_too_many_requests">Похоже, ваш лимит исчерпан.</string>
+    <string name="error_serialization">Не удалось обработать данные.</string>
+    <string name="invalid_image">Недействительное изображение</string>
+
+    <!--About-->
+    <string name="about">О приложении</string>
+    <string name="developer">Разработано OneDroid</string>
+    <string name="maintainer">Поддержка Tawhid Monowar</string>
+    <string name="last_updated_label">Последнее обновление</string>
+    <string name="last_updated_date">Апрель 2025</string>
+    <string name="contact_label">Контакт</string>
+    <string name="contact_email">contact.onedroid@gmail.com</string>
+    <string name="github_label">Github</string>
+    <string name="github_url">https://github.com/OneDroid/RadioWave</string>
+    <string name="webpage_label">Веб-страница</string>
+    <string name="webpage_url">https://onedroid.github.io</string>
+    <string name="license_label">Лицензия</string>
+    <string name="license_type">Лицензия GPL-3.0</string>
+    <string name="version_label">Версия</string>
+    <string name="version_number">1.0.0</string>
+    <string name="about_app">RadioWave - это интернет-радио плеер, предоставляющий доступ к базе данных, содержащей более 50 000 станций. Он использует API Radio Browser для получения радиостанций.</string>
+
+</resources>
